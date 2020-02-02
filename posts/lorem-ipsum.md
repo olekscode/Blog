@@ -71,3 +71,8 @@ void print(SmartArray* array) {
 %% Now actually use the newly defined style.
 \urlstyle{leo}
 ```
+
+## Math Examples
+
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
