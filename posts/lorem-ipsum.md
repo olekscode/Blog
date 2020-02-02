@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ### Pharo Code
 
-```Smalltalk
+```smalltalk
 Object >> printOn: aStream
 	"print the name of my class preceded with letter 'a'"
 	aStream nextPutAll: 'a ', self class name.
@@ -14,7 +14,7 @@ Object >> printOn: aStream
 
 ### Java Code
 
-```Java
+```java
 public class HelloWorld {
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class HelloWorld {
 
 ### C Code
 
-```C
+```c
 #include <stdio.h>
 #include "smartarray.h"
 
@@ -49,7 +49,7 @@ void print(SmartArray* array) {
 
 ### LaTeX Code
 
-```Latex
+```latex
 \documentclass{article}
 
 \usepackage[a4paper, total={6in, 8in}]{geometry}
