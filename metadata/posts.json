@@ -1,4 +1,14 @@
-{
-	"creating-website": "How I Created an (almost) Free Personal Website Hosted by GitHub",
-	"lorem-ipsum": "Lorem Ipsum Dolor Sit Amet"
-}
+[
+  {
+    "id": "creating-website",
+    "title": "How I Created an (almost) Free Personal Website Hosted by GitHub",
+    "categories": ["Web", "Pharo"],
+    "datePublished": "December 30, 2019"
+  },
+  {
+    "id": "lorem-ipsum",
+    "title": "Lorem Ipsum Dolor Sit Amet",
+    "categories": ["Machine Learning"],
+    "datePublished": "January 25, 2020"
+  }
+]
