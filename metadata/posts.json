@@ -10,7 +10,7 @@
     "title": "Lorem Ipsum Dolor Sit Amet",
     "categories": ["Machine Learning"],
     "datePublished": "January 25, 2020"
-  }
+  },
   {
     "id": "ngram-model",
     "title": "N-gram Language Models",
