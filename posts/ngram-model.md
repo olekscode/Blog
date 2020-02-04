@@ -10,7 +10,8 @@ Before writing a chapter about n-gram models, I will briefly describe them in th
 
 The probability of the entire sequence is the product of probabilities of each of its words:
 
-\[ P(w_1, \dots, w_k) = P(w_1)P(w_2|w_1)P(w3|w_1, w_2)\dotsP(w_k|w_1,\dots,w_{k-1}) = \prod_{i=1}^kP(w_i|w_1^{i-1}) \]
+\[ P(w_1, \dots, w_k) = P(w_1)P(w_2|w_1)P(w_3|w_1, w_2)\dots P(w_k|w_1,\dots,w_{k-1}) \]
+\[ = \prod_{i=1}^kP(w_i|w_1^{i-1}) \]
 
 ## N-gram language models
 
