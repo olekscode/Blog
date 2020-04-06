@@ -49,7 +49,7 @@ Let's find top 10 countries by the number of reported cases and number of report
 	head: 10.
 ```
 
-![Top 10 countries by the number of reported cases and number of reported deaths as of March 31, 2020](img/topCountries.png)
+![Top 10 countries by the number of reported cases and number of reported deaths as of March 31, 2020](../img/topCountries.png)
 
 Now we will look at the historical data of how COVID-19 was spreading in one specific country, in this case - France:
 
