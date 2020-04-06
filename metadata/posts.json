@@ -16,5 +16,11 @@
     "title": "N-gram Language Models",
     "categories": ["Machine Learning", "Pharo"],
     "datePublished": "February 3, 2020"
+  },
+  {
+    "id": "covid19-analysis",
+    "title": "COVID-19 Data Analysis using Pharo DataFrame",
+    "categories": ["Data Analysis", "Pharo", "DataFrame"],
+    "datePublished": "April 6, 2020"
   }
 ]
