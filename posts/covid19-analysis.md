@@ -165,6 +165,10 @@ covid
 
 ### Parsing Date and Number Columns
 
+Remember that we loaded the data from a CSV file without the automatic type inference. This means that all values in our data frame are currently strings. 
+
+First we convert the `date` column by applying a conversion block to each of its cells (elements):
+
 ```Smalltalk
 covid
     toColumn: 'date'
@@ -172,14 +176,18 @@ covid
         Date readFrom: each pattern: 'dd/mm/yyyy' ].
 ```
 
+Then we convert the values inside each of the columns `cases`, `deaths`, and `population` to integers. Some values of these columns are `nil`, we will keep them empty and explore them in the next section:
+
 ```Smalltalk
 covid
-    toColumns: #(cases deaths population)
+    toColumns: #(cases deaths)
     applyElementwise: [ :each |
         each
             ifNil: [ nil ]
             ifNotNil: [ each asInteger ] ].
 ```
+
+### Handling Missing Values
 
 ### Sorting DataFrame by Date
 

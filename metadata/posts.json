@@ -1,11 +1,5 @@
 [
   {
-    "id": "creating-website",
-    "title": "How I Created an (almost) Free Personal Website Hosted by GitHub",
-    "categories": ["Web", "Pharo"],
-    "datePublished": "December 30, 2019"
-  },
-  {
     "id": "lorem-ipsum",
     "title": "Lorem Ipsum Dolor Sit Amet",
     "categories": ["Machine Learning"],
@@ -22,5 +16,11 @@
     "title": "COVID-19 Data Analysis using Pharo DataFrame",
     "categories": ["Data Analysis", "Pharo", "DataFrame"],
     "datePublished": "April 6, 2020"
+  },
+  {
+    "id": "library-update",
+    "title": "Understanding the Problem of Library Update",
+    "categories": ["Library Update", "Library Migration", "Research"],
+    "datePublished": "August 18, 2020"
   }
 ]
