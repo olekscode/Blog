@@ -5,3 +5,28 @@ Most modern software depends on a plethora of external libraries (I use the term
 ![Figure 1. Library update](../img/LibraryUpdate.png)
 
 The Figure above illustrates the general case of library update and helps understand the terminology that I use to refer to different actors and entities that are involved in this process. The **client system** is any piece of software that has external dependencies and needs to be updated to the new version of a given library. The client system is maintained by one or many **client developers**; it is their responsibility to update the client system. The **external library** is the dependency of a client system that has been updated to the new version. Version numbers *v1.0* and *v2.0* in the Figure symbolise any kind of version increment, for example from *v19.10.8* to *v21.0.1*. The changes that the external library undergoes with the release of every new version are collectively called the **library evolution**. Those changes can be fully described by the *commit history* stored by the version control system (VCS). The external library is maintained by one or many **library developers**. They have expertise related to the implementation and evolution of the library and can aid client developers in the process of library update by providing documentation or a **library update script** for automatically updating client code. In this context, the **library update** is a sequence of manual, automatic, or semi-automatic changes applied to the client system in response to the evolution of one of its dependencies. Some of those changes can be described with a set of **library update rules** --- key-value pairs of regular expressions where the key expression (*antecedent*) matches the code that should be replaced and the value expression (*consequent*) specifies the replacement. Not all changes can be expressed with such rules. Some of the more challenging ones might require human intervention. I will discuss both cases in the following sections.
+
+```Java
+public class Collection<E> {
+    ...
+    public boolean includesAllOf(Collection<E> values) {
+        return values.forEach(value -> {
+            this.includes(value);
+        });
+    }
+    ...
+}
+```
+
+```Java
+import Collection;
+...
+
+Collection<String> products = new Collection<String>();
+
+products.add(“apple”);
+products.add(“banana”);
+products.add(“pear”);
+
+if (products.includesAllOf([“apple”, “pear”]) { ... }
+```
