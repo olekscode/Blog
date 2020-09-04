@@ -1,20 +1,24 @@
-# Understanding the Problem of Library Update
+# Introducing the Problem of Library Update
 
 Most modern software depends on multiple external libraries or frameworks. For example, a simple Java application can depend on JUnit, Mockito, Log4j, Xerces, etc. Every time the new version of an external library is released, developers of every application that depends on this library are facing a choice: either *to update* their system to the new version of the library, thus dealing with the added cost of refactoring, or *not to update* and keep using the old version of the library, thus missing out on the new or improved functionality and dealing with all the challenges of being dependent on the obsolete software.
 
-In this post, I talk about the first situation and discuss:
+Updating large software systems to the new version of external library can be time consuming and repetitive (e.g. searching for dependencies in the source code and applying multiple simple refactorings such as method call replacement, argument reordering or removal, etc.). It is exactly the kind of tasks that would benefit the most from being automated. During my PhD, I am studying different ways of applying machine learning and data mining to support software developers in the task of library update. In this series of short blog posts, I will introduce the readers with the field of my study and, using the simple terms, explain the central ideas of the reasearch that has been done in this area either by me or my more esteemed colleagues.
 
-1. The difference between *library update* and *library migration*
-2. The general idea of automatic or semi-automatic library update
+Before going any further, I would like to express my gratitude to the [Arolla](https://www.arolla.fr/) software company that is financing my research, as well as to Mathieu Eveillard who is continously supporting me by proofreading my texts, validating my ideas, and providing me with his fresh insights from the industrial point of view. I am also very grateful to the RMoD team of Inria and my supervisors Stéphane Ducasse and Nicolas Anquetil.
 
-In my next post, I will discuss:
+In this firt blog post of the series, I use a simple example to introduce the problem of library update and briefly discuss:
 
-3. Different sources of information that can be used to automate the process of library update
-4. What has been done in this area
+- the difference between *library update* and *library migration*
+- the general idea of automatic or semi-automatic library update
+
+I will continue this discussion in my next blog post where I will talk about:
+
+- the different sources of information that can be used to automate the process of library update
+- the related research that has been done in this area
 
 ## A Simple Example
 
-Consider the following example. There is an external library `collection1.0.jar` which provides a public class `Collection` and a method `includesAllOf()` which checks if all elements of another collection passed as an argument are included in the receiver collection.
+Consider the following example. There is an external library `collection1.0.jar` which provides a public class `Collection` with a method `includesAllOf()` that checks if all elements of another collection, passed as an argument, are included in the receiver collection.
 
 ```Java
 public class Collection<E> {
@@ -43,7 +47,7 @@ products.add(“pear”);
 if (products.includesAllOf([“apple”, “pear”]) { ... }
 ```
 
-After some time, library developers release the new version of the collection library, `collection2.0.jar`. In this version, the method `includesAllOf()` is renamed to `containsAll()`.
+After some time, library developers release the new version of the collection library, `collection2.0.jar`. In this version, the method `includesAllOf()` was renamed to `containsAll()`.
 
 ```Java
 public class Collection<E> {
@@ -76,14 +80,13 @@ This change of client application that is triggered by the evolution of the exte
 
 ## Library Update vs Library Migration
 
-There is no universally accepted vocabulary in this area and authors of various related literature use different terms interchangeably. Therefore, in this section, I would like to define the two major variations of the problem and propose the terminology which I find to be the most clear and unambiguous:
+There is no universally accepted vocabulary in this field and authors of various related research articles use several terms interchangeably. In this section, I would like to define the two closely related variations of the problem and propose the terminology which I find to be the most clear and unambiguous:
 
-**Library Update** --- the problem of updating client systems from the old version of a library to the new one. For example, an application that depended on *JUnit 4 (v4.16.1)* has to be updated to use *JUnit 5 (v5.6.3)*.
+**Library Update** --- the problem of updating client systems from the old version of an external library to the new one. For example, an application that depended on *JUnit 4 (v4.16.1)* has to be updated to use *JUnit 5 (v5.6.3)*.
 
-**Library Migration** --- the problem of migrating the client system from one external library to a completely different library that serves the same or similar purpose. For example, the application that used the *easymock* testing framework has to be migrated to use *mockito* instead.
+**Library Migration** --- the problem of migrating the client system from one external library to a completely different one which serves the same or similar purpose. For example, the application that used the *easymock* testing framework has to be migrated to use *mockito* instead.
 
-In my PhD, I am dealing with the problem of *Library Update*. The prob
-em of *Library Migration*, although closely related, remains outside the scope of my research. In this series of blog posts, unless otherwise stated, I will be talking about library update as defined above.
+In my PhD, I am dealing with the problem of *library update*. The probem of *library migration*, although closely related, remains outside the scope of my research. In this series of blog posts, unless otherwise stated, I will be talking about library update as defined above.
 
 ## Automatic and Semi-automatic Library Update
 
