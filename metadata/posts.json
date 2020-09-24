@@ -16,5 +16,11 @@
     "title": "Understanding the Problem of Library Update. Part 2",
     "categories": ["Library Update", "Library Migration", "Research"],
     "datePublished": "September 17, 2020"
+  },
+  {
+    "id": "equality-and-hash",
+    "title": "Overriding Equality and Hash in Pharo",
+    "categories": ["Pharo", "Programming", "OOP"],
+    "datePublished": "September 25, 2020"
   }
 ]
