@@ -8,9 +8,19 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 ## Different Kinds of Normalization
 
-### Linear Scaling
+### Min-max Normalization (Linear Scaling)
 
 \[ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} \]
+
+### Z-Score Normalization
+
+\[ x_i' = \frac{x_i - \mu}{\sigma} \]
+
+### Z-Score Normalization With Mean Absolute Deviation
+
+\[ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | ]\
+
+\[ x_i' = \frac{x_i - \mu}{s_x} ]\
 
 ### Clipping
 
@@ -26,9 +36,11 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 \[ x_i' = \log(x_i) \]
 
-### Z-Score
+### Decimal Scaling
 
-\[ x_i' = \frac{x_i - \mu}{\sigma} \]
+\[ x_i' = \frac{x_i}{10^j} \]
+
+Where \(j\) is the smallest integer such that \( \max(|x_i'|) < 1 \).
 
 ## Which Normalization Technique Should I Use?
 
@@ -36,5 +48,6 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 ## References
 
+* Jiawei Han, Micheline Kamber, and Jian Pei. _Data Mining. Concepts and Techniques_ (3rd edition). The Morgan Kaufmann Series in Data Management Systems, 2011, pp. 113-115 (Section 3.5.2. Data Transformation by Normalization).
 * [Normalization. Machine Learning Crash Course at developers.google.com](https://developers.google.com/machine-learning/data-prep/transform/normalization)
 * [Aniruddha Bhandari. _Feature Scaling for Machine Learning: Understanding the Difference Between Normalization vs. Standardization_ -- Analytics Vidhya, April 3, 2020](https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/)
