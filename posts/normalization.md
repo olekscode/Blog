@@ -18,9 +18,9 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 ### Z-Score Normalization With Mean Absolute Deviation
 
-\[ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | ]\
+\[ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | \]
 
-\[ x_i' = \frac{x_i - \mu}{s_x} ]\
+\[ x_i' = \frac{x_i - \mu}{s_x} \]
 
 ### Clipping
 
