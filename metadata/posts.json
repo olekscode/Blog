@@ -22,5 +22,11 @@
     "title": "Overriding Equality and Hash in Pharo",
     "categories": ["Pharo", "Programming", "OOP"],
     "datePublished": "September 25, 2020"
+  },
+  {
+    "id": "normalization",
+    "title": "Understanding Normalization in Machine Learning",
+    "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
+    "datePublished": "December 12, 2020"
   }
 ]
