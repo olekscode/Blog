@@ -6,6 +6,10 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 ## What Is Normalization?
 
+Consider the following situation.
+
+![](../img/AcademicSalary.png)
+
 ## Different Kinds of Normalization
 
 ### Min-max Normalization (Linear Scaling)
