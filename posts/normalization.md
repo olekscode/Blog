@@ -48,6 +48,18 @@ Where \(j\) is the smallest integer such that \( \max(|x_i'|) < 1 \).
 
 ## Which Normalization Technique Should I Use?
 
+The most frequently used normalization techniques are the min-max normalization and z-score normalization. Other methods that I described in the previous section can be useful in some special cases. For example, clipping can be used to remove outliers, log scaling can help if your data is shifted to the left.
+
+The main difference between min-max and z-score normalization techniques in that the prior one requires you to know the range of your data. If you are using normalization with a supervised learning algorithm when new values can come after training, those values can fall outside of the range, which would cause min-max normalization to exceed its bounds. On the other handm if you are using an unsupervised learning algorithm such as k-means clustering and you will not be applying your trained model to the new data, you can use min-max. The advantage of min-max over z-score is that we know the resulting range [0,1].
+
+## Confusing Terminology
+
+As it is with many concepts in the field of machine learning and AI, the terminology which is used to described normalization is very inconsistent accross literature. In some articles, the term _"normalization"_ refers to the min-max technique only and is contrasted with a z-score _"standardization"_. Other articles use the term _"scaling"_ for min-max and reserve _"normalization"_ for z-score.
+
+Perhaps, this confusion comes from the field of statistics, where _"normalization"_ sometimes has other connotations (e.g. transforming data to better fit the normal districution).
+
+I adopt the terminology that is more commonly used in data processing: _"normalization"_ and _"standardization"_ are two terms that can be used interchangeably and encapsulate different techniques such as _"min-max normalization"_ (a.k.a. _"linear scaling"_) and _"z-score normalization"_.
+
 ## Implementing Normalization Using Strategy Design Pattern
 
 ## References
