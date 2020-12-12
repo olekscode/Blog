@@ -16,6 +16,10 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 \[ x_i' = \frac{x_i - \mu}{\sigma} \]
 
+\[ \mu = \frac{1}{n} \sum_{i=1}^n x_i \]
+
+\[ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} \]
+
 ### Z-Score Normalization With Mean Absolute Deviation
 
 \[ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | \]
