@@ -79,4 +79,4 @@ When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   
 ## Image Example
 
-![Two aspects of the problem of automatic migration](../img/ApproachingProblem.png)
+![Two aspects of the problem of automatic migration](img/ApproachingProblem.png)

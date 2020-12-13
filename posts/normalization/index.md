@@ -8,7 +8,7 @@ In this blog post, I will introduce you to **normalization** -- a very important
 
 Consider the following situation.
 
-![](../img/AcademicSalary.png)
+![](img/AcademicSalary.png)
 
 ## Different Kinds of Normalization
 

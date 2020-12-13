@@ -118,7 +118,7 @@ covid := DataFrame
 
 You can inspect this object by selecting the `covid` variable and pressing (Ctrl+I or Cmd+I on Mac). You will see a table like this:
 
-![COVID-19 DataFrame](../img/covidDataRaw.png)
+![COVID-19 DataFrame](img/covidDataRaw.png)
 
 ## Cleaning the Data
 
@@ -215,7 +215,7 @@ covidData := dataLoader loadData.
 
 The result will be a data frame that looks like this:
 
-![DataFrame of COVID-19 data](../img/covidData.png)
+![DataFrame of COVID-19 data](img/covidData.png)
 
 ### Example of Data Analysis
 
@@ -231,7 +231,7 @@ Let's find top 10 countries by the number of reported cases and number of report
 	head: 10.
 ```
 
-![Top 10 countries by the number of reported cases and number of reported deaths as of March 31, 2020](../img/topCountries.png)
+![Top 10 countries by the number of reported cases and number of reported deaths as of March 31, 2020](img/topCountries.png)
 
 Now we will look at the historical data of how COVID-19 was spreading in one specific country, in this case - France:
 
@@ -250,7 +250,7 @@ covidDataFrance removeColumns: #(country population).
 
 We get the following data frame:
 
-![DataFrame of COVID-19 data for France](../img/covidDataFrance.png)
+![DataFrame of COVID-19 data for France](img/covidDataFrance.png)
 
 We can find the days on which there were the most reported cases and the most deaths in France:
 
@@ -262,7 +262,7 @@ covidDataFrance detect: [ :row | (row at: 'cases') = maxDailyCases ].
 covidDataFrance detect: [ :row | (row at: 'deaths') = maxDailyDeaths ].
 ```
 
-![Days with most reported cases and deaths](../img/maxDailyCasesAndDeaths.png)
+![Days with most reported cases and deaths](img/maxDailyCasesAndDeaths.png)
 
 We can see that so far March 29 had the most reported cases - 4,611, and today, on March 31 there were the most deaths - 418 people died today in France.
 
@@ -284,7 +284,7 @@ covidDataFrance addColumn: cumulativeDeaths named: 'cumulativeDeaths'.
 
 Now `covidDataFrance` data frame looks like this: 
 
-![DataFrame of COVID-19 data for France with cumulative cases and deaths](../img/covidDataFranceCumulative.png)
+![DataFrame of COVID-19 data for France with cumulative cases and deaths](img/covidDataFranceCumulative.png)
 
 Let's find out how many days it took for disease to spread from 10 cases to 100 cases, as well as from 100 cases to 1000 cases. The following block will find the date in the given data frame on which the total number of reported cases reached the given number: 
 
