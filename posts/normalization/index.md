@@ -32,13 +32,7 @@ $$ x_i' = \frac{x_i - \mu}{s_x} $$
 
 ### Clipping
 
-$$ x_i' = \left\{
-    \begin{array}{ll}
-      a,& x_i < a\\
-      x_i,& a \leq x_i \leq b\\
-      b,& x_i > b
-    \end{array}
-  \right. $$
+$$ x_i' = \left\{\begin{array}{ll}a,& x_i < a\\x_i,& a \leq x_i \leq b\\b,& x_i > b\end{array}\right. $$
 
 ### Log Scaling
 
