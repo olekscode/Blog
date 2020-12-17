@@ -14,41 +14,41 @@ Consider the following situation.
 
 ### Min-max Normalization (Linear Scaling)
 
-\[ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} \]
+$$ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} $$
 
 ### Z-Score Normalization
 
-\[ x_i' = \frac{x_i - \mu}{\sigma} \]
+$$ x_i' = \frac{x_i - \mu}{\sigma} $$
 
-\[ \mu = \frac{1}{n} \sum_{i=1}^n x_i \]
+$$ \mu = \frac{1}{n} \sum_{i=1}^n x_i $$
 
-\[ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} \]
+$$ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} $$
 
 ### Z-Score Normalization With Mean Absolute Deviation
 
-\[ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | \]
+$$ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | $$
 
-\[ x_i' = \frac{x_i - \mu}{s_x} \]
+$$ x_i' = \frac{x_i - \mu}{s_x} $$
 
 ### Clipping
 
-\[ x_i' = \left\{
+$$ x_i' = \left\{
     \begin{array}{ll}
       a,& x_i < a\\
       x_i,& a \leq x_i \leq b\\
       b,& x_i > b
     \end{array}
-  \right. \]
+  \right. $$
 
 ### Log Scaling
 
-\[ x_i' = \log(x_i) \]
+$$ x_i' = \log(x_i) $$
 
 ### Decimal Scaling
 
-\[ x_i' = \frac{x_i}{10^j} \]
+$$ x_i' = \frac{x_i}{10^j} $$
 
-Where \(j\) is the smallest integer such that \( \max(|x_i'|) < 1 \).
+Where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $.
 
 ## Which Normalization Technique Should I Use?
 
