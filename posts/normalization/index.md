@@ -2,11 +2,25 @@
 
 Data comes to us in a dirty state. Some values are missing, some entries are inconsistent with each other. Before applying a machine learning algorithm to a given dataset, we must often do several preprocessing steps to ensure that the data is clean and in good shape.
 
-In this blog post, I will introduce you to **normalization** -- a very important step of data preprocessing that is crytical when applying certain machine learning algorithms. 
+In this blog post, I will introduce you to _normalization_ -- a very important step of data preprocessing that is crytical when applying certain machine learning algorithms. 
 
 ## What Is Normalization?
 
-Consider the following situation.
+In statistics and machine learning, _normalization_ is the process which transforms multiple columns of a dataset to make them numerically consistent with each other (e.g. be on the same scale) and preserve the valuable information stored in these columns.
+
+The following examples will help you understand what is normalization and why do we need it.
+
+### Example 1. Academic Salaries
+
+The [Salaries]() table which is part of the [carData](https://cran.r-project.org/web/packages/carData/index.html) collection of datasets (Datasets to Accompany J. Fox and S. Weisberg, An R Companion to Applied Regression, Third Edition, Sage, 2019) descibes the 2008-09 nine-month academic salary for Assistant Professors, Associate Professors, and Professors in a college in the U.S.
+
+In this example, we will look at three columns of the dataset:
+
+| Column name | Values |
+|---|---|---|
+| Rank | _"Associate Professor"_, _"Assistant Professor"_, or _"Professor"_ |
+| Years Since PhD | Integer in range [1 .. 56] |
+| Salary | Integer in range [57,800 .. 231,545]
 
 ![](img/AcademicSalary.png)
 
