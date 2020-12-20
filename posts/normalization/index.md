@@ -20,7 +20,7 @@ In this example, we will look at three columns of the dataset:
 |---|---|---|
 | Rank | _"Associate Professor"_, _"Assistant Professor"_, or _"Professor"_ |
 | Years Since PhD | Integer in range [1 .. 56] |
-| Salary | Integer in range [57,800 .. 231,545]
+| Salary | Integer in range [57,800 .. 231,545] |
 
 ![](img/AcademicSalary.png)
 
