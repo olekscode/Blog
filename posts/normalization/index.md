@@ -28,29 +28,37 @@ As you can see, the values of the second and the third column are on a very diff
 
 A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ columns to the same scale, for example [0..1]. You can see the result in the right hand side of the figure above.
 
-## Different Kinds of Normalization
+## Different Types of Normalization
 
 ### Min-max Normalization (Linear Scaling)
 
+The most simple and most commonly used normalization is a simple linear scaling also known as [min-max normalization](https://en.wikipedia.org/wiki/Feature_scaling). It transforms the numbers in a column from range $[x_{min}..x_{max}]$ to the unit range $[0..1]$. For every number $x_i$ taken from the column $X = \{ x_i \}_{i=1}^n$, the normalized value $x_i'$ is calculated as:
+
 $$ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} $$
+
+If you want to transform your numbers to a custom range $[a..b]$, you can use a more general form of linear scaling:
+
+$$ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} (b - a) + a $$
 
 ### Z-Score Normalization
 
+Another widely used form of normalization is called [z-score or standard score normalization](https://en.wikipedia.org/wiki/Standard_score). Each number $x_i$ is replaced with a z-score $x_i'$ which is the distance between $x_i$ and the mean of $X$ in the units of standard deviation. In other words, z-score tells us _"how many standard deviations_ $\sigma$ _are there between_ $x_i$ _and the mean value $\mu$"_. 
+
 $$ x_i' = \frac{x_i - \mu}{\sigma} $$
+
+The mean $\mu$ and standard deviation $\sigma$ are calculated as:
 
 $$ \mu = \frac{1}{n} \sum_{i=1}^n x_i $$
 
 $$ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} $$
+
+The range of the normalized values $x_i'$ is unknown but they should be relatively small. For example, if $X$ follows the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) then approximately 95% of normalized values $x_i'$ should fall into the range of $[-2..2]$ (see [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) for explanation).
 
 ### Z-Score Normalization With Mean Absolute Deviation
 
 $$ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | $$
 
 $$ x_i' = \frac{x_i - \mu}{s_x} $$
-
-### Clipping
-
-$$ x_i' = \left\{\begin{array}{ll}a,& x_i < a\\x_i,& a \leq x_i \leq b\\b,& x_i > b\end{array}\right. $$
 
 ### Log Scaling
 
@@ -62,7 +70,7 @@ $$ x_i' = \frac{x_i}{10^j} $$
 
 Where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $.
 
-## Which Normalization Technique Should I Use?
+## Which Normalization Technique Should You Use?
 
 The most frequently used normalization techniques are the min-max normalization and z-score normalization. Other methods that I described in the previous section can be useful in some special cases. For example, clipping can be used to remove outliers, log scaling can help if your data is shifted to the left.
 
@@ -75,8 +83,6 @@ As it is with many concepts in the field of machine learning and AI, the termino
 Perhaps, this confusion comes from the field of statistics, where _"normalization"_ sometimes has other connotations (e.g. transforming data to better fit the normal districution).
 
 I adopt the terminology that is more commonly used in data processing: _"normalization"_ and _"standardization"_ are two terms that can be used interchangeably and encapsulate different techniques such as _"min-max normalization"_ (a.k.a. _"linear scaling"_) and _"z-score normalization"_.
-
-## Implementing Normalization Using Strategy Design Pattern
 
 ## References
 
