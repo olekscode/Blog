@@ -1,4 +1,4 @@
-# Understanding Normalization in Machine Learning
+# Data Normalization in Machine Learning
 
 Data comes to us in a dirty state. Some values are missing, some entries are inconsistent with each other. Before applying a machine learning algorithm to a given dataset, we must often do several preprocessing steps to ensure that the data is clean and in good shape.
 
@@ -54,21 +54,31 @@ $$ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} $$
 
 The range of the normalized values $x_i'$ is unknown but they should be relatively small. For example, if $X$ follows the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) then approximately 95% of normalized values $x_i'$ should fall into the range of $[-2..2]$ (see [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) for explanation).
 
-### Z-Score Normalization With Mean Absolute Deviation
+Another variant of z-score normalization replaces standard deviation $\sigma$ with mean absolute deviation $s_x$ (MAD) calculated as:
 
 $$ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | $$
 
-$$ x_i' = \frac{x_i - \mu}{s_x} $$
+Residuals (deviations from the mean) $|x_i - \mu |$ are not squared like the ones used in standard deviation, which makes mean absolute deviation more robust to outliers.
 
 ### Log Scaling
+
+When a handful of values have many data points while most other values have few points, we can use the logarithmic scaling to get a more narrow distribution and improve the performance of some machine learning models.
 
 $$ x_i' = \log(x_i) $$
 
 ### Decimal Scaling
 
+Another simple scaling technique is reducing the values by a smallest power of 10 which ensures that all normalized values are in the range $[-1..1]$:
+
 $$ x_i' = \frac{x_i}{10^j} $$
 
-Where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $.
+where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $. For example, let's use decimal scaling to normalize the following array of numbers:
+
+$$ X = \{ -100, 250, -300, 500, 974, 100 \}$$
+
+In this case, $j=3$ and $10^j=1000$, which gives us:
+
+$$ X' = \{ -0.1, 0.25, -0.3, 0.5, 0.974, 0.1 \} $$
 
 ## Which Normalization Technique Should You Use?
 
