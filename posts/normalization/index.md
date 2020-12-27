@@ -28,6 +28,10 @@ As you can see, the values of the second and the third column are on a very diff
 
 A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ columns to the same scale, for example [0..1]. You can see the result in the right hand side of the figure above.
 
+### Example 2. Movie Ratings
+
+![](img/MovieRatings.png)
+
 ## Different Types of Normalization
 
 ### Min-max Normalization (Linear Scaling)
