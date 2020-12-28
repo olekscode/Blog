@@ -48,29 +48,41 @@ As you can see in the left hand side of the visualization below, the values of t
 
 The most simple and most commonly used normalization is a simple linear scaling also known as [min-max normalization](https://en.wikipedia.org/wiki/Feature_scaling). It transforms the numbers in a column from range $[x_{min}..x_{max}]$ to the unit range $[0..1]$. For every number $x_i$ taken from the column $X = \{ x_i \}_{i=1}^n$, the normalized value $x_i'$ is calculated as:
 
-$$ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} $$
+$$
+x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}}
+$$
 
 If you want to transform your numbers to a custom range $[a..b]$, you can use a more general form of linear scaling:
 
-$$ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} (b - a) + a $$
+$$
+x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} (b - a) + a
+$$
 
 ### Z-Score Normalization
 
 Another widely used form of normalization is called [z-score or standard score normalization](https://en.wikipedia.org/wiki/Standard_score). Each number $x_i$ is replaced with a z-score $x_i'$ which is the distance between $x_i$ and the mean of $X$ in the units of standard deviation. In other words, z-score tells us _"how many standard deviations_ $\sigma$ _are there between_ $x_i$ _and the mean value $\mu$"_. 
 
-$$ x_i' = \frac{x_i - \mu}{\sigma} $$
+$$
+x_i' = \frac{x_i - \mu}{\sigma}
+$$
 
 The mean $\mu$ and standard deviation $\sigma$ are calculated as:
 
-$$ \mu = \frac{1}{n} \sum_{i=1}^n x_i $$
+$$
+\mu = \frac{1}{n} \sum_{i=1}^n x_i
+$$
 
-$$ \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2} $$
+$$
+\sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2}
+$$
 
 The range of the normalized values $x_i'$ is unknown but they should be relatively small. For example, if $X$ follows the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) then approximately 95% of normalized values $x_i'$ should fall into the range of $[-2..2]$ (see [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) for explanation).
 
 Another variant of z-score normalization replaces standard deviation $\sigma$ with mean absolute deviation $s_x$ (MAD) calculated as:
 
-$$ s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu | $$
+$$
+s_x = \frac{1}{n} \sum_{i=1}^n | x_i - \mu |
+$$
 
 Residuals (deviations from the mean) $|x_i - \mu |$ are not squared like the ones used in standard deviation, which makes mean absolute deviation more robust to outliers.
 
@@ -78,21 +90,29 @@ Residuals (deviations from the mean) $|x_i - \mu |$ are not squared like the one
 
 When a handful of values have many data points while most other values have few points, we can use the logarithmic scaling to get a more narrow distribution and improve the performance of some machine learning models.
 
-$$ x_i' = \log(x_i) $$
+$$
+x_i' = \log(x_i)
+$$
 
 ### Decimal Scaling
 
 Another simple scaling technique is reducing the values by a smallest power of 10 which ensures that all normalized values are in the range $[-1..1]$:
 
-$$ x_i' = \frac{x_i}{10^j} $$
+$$
+x_i' = \frac{x_i}{10^j}
+$$
 
 where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $. For example, let's use decimal scaling to normalize the following array of numbers:
 
-$$ X = \{ -100, 250, -300, 500, 974, 100 \}$$
+$$
+X = \{ -100, 250, -300, 500, 974, 100 \}
+$$
 
 In this case, $j=3$ and $10^j=1000$, which gives us:
 
-$$ X' = \{ -0.1, 0.25, -0.3, 0.5, 0.974, 0.1 \} $$
+$$
+X' = \{ -0.1, 0.25, -0.3, 0.5, 0.974, 0.1 \}
+$$
 
 ## Which Normalization Technique Should You Use?
 
