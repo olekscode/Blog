@@ -24,7 +24,7 @@ In this example, we will look at three columns of the dataset:
 
 As you can see, the values of the second and the third column are on a very different scale. The _"Salary"_ column contains much larger numbers which variate on a larger range than the ones from _"Years Since PhD"_ column. Many machine learning algorithms (for example those that calculate distances between data points, such as k-means, k nearest neighbours, support vector machines, etc.) will give higher importance to the columns with larger values. For those algorithms, 10 years of experience will have as little importance as $10 increase in salary, as a result, the _"Years Since PhD"_ column will be practically ignored. You can see this problem visualized in the left part of the figure below.
 
-![](img/AcademicSalary.png)
+![](img/AcademicSalaries.png)
 
 A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ columns to the same scale, for example [0..1]. You can see the result in the right hand side of the figure above.
 
