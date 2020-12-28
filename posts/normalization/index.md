@@ -30,6 +30,16 @@ A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ column
 
 ### Example 2. Movie Ratings
 
+Now let us look at the second example. The [Movie Ratings](https://www.kaggle.com/trpearce/movie-ratings) dataset published at [Kaggle](https://www.kaggle.com) describes 562 movies with the following columns: _Title_, _Genre_, _Rotten Tomatioes Ratings_, _Audience Ratings_, _Budget_, and _Year of Release_. We will select only those movies that belong to _"Action"_ or _"Comedy"_ genre and analyse the data from the following three columns:
+
+| Column name | Values |
+|---|---|
+| Genre | "Action" or "Comedy" |
+| Budget (million $) | Integer in range [0..300] |
+| Audience Ratings % | Integer in range [0..100] |
+
+As you can see in the left hand side of the visualization below, the values of the _Budget_ column are skewed to the left. This may decrease the performance of some algorithms, make it harder for them to find the optimal solution and require more time to converge. A simple solution in this case would be to normalize the values of the Budget column by replacing _Budget_ with _log(Budget)_ -- see the visualization on the right.
+
 ![](img/MovieRatings.png)
 
 ## Different Types of Normalization
