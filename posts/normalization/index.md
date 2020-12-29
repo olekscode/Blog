@@ -1,20 +1,20 @@
 # Data Normalization in Machine Learning
 
-Data comes to us in a dirty state. Some values are missing, some entries are inconsistent with each other. Before applying a machine learning algorithm to a given dataset, we must often do several preprocessing steps to ensure that the data is clean and in good shape.
+Data comes to us in a dirty state. Some values are missing, some entries are inconsistent with each other. Before applying a machine learning algorithm to a given dataset, we must often perform several preprocessing steps to ensure that the data is clean and in good shape.
 
-In this blog post, I will introduce you to _normalization_ -- a very important step of data preprocessing that is crytical when applying certain machine learning algorithms. 
+In this blog post, I will introduce you to the concept of  _normalization_ -- a very important step of data preprocessing that is crytical when applying certain machine learning algorithms. 
 
 ## What Is Normalization?
 
-In statistics and machine learning, _normalization_ is the process which transforms multiple columns of a dataset to make them numerically consistent with each other (e.g. be on the same scale) and preserve the valuable information stored in these columns.
+In statistics and machine learning, _normalization_ is the process which transforms multiple columns of a dataset to make them numerically consistent with each other (e.g. be on the same scale) but in the same time preserve the valuable information stored in these columns.
 
-The following examples will help you understand what is normalization and why do we need it.
+To better understand why we need to normalize certain columns of a dataset, consider the following examples.
 
 ### Example 1. Academic Salaries
 
 The [Salaries]() table which is part of the [carData](https://cran.r-project.org/web/packages/carData/index.html) collection of datasets (Datasets to Accompany J. Fox and S. Weisberg, An R Companion to Applied Regression, Third Edition, Sage, 2019) descibes the 2008-09 nine-month academic salary for Assistant Professors, Associate Professors, and Professors in a college in the U.S.
 
-In this example, we will look at three columns of the dataset:
+In this example, we will only work with the following three columns of the dataset:
 
 | Column name | Values |
 |---|---|
@@ -22,31 +22,35 @@ In this example, we will look at three columns of the dataset:
 | Years Since PhD | Integer in range [1 .. 56] |
 | Salary | Integer in range [57,800 .. 231,545] |
 
-As you can see, the values of the second and the third column are on a very different scale. The _"Salary"_ column contains much larger numbers which variate on a larger range than the ones from _"Years Since PhD"_ column. Many machine learning algorithms (for example those that calculate distances between data points, such as k-means, k nearest neighbours, support vector machines, etc.) will give higher importance to the columns with larger values. For those algorithms, 10 years of experience will have as little importance as $10 increase in salary, as a result, the _"Years Since PhD"_ column will be practically ignored. You can see this problem visualized in the left part of the figure below.
+As you can see, the values of the second and the third column are on a very different scale. The _"Salary"_ column contains much larger numbers that variate on a larger range than the ones from _"Years Since PhD"_ column. Many machine learning algorithms (for example those that calculate distances between data points, such as k-means, k nearest neighbours, support vector machines, etc.) will give higher importance to the columns with larger values. For those algorithms, 10 years of experience will have as little importance as $10 increase in salary, as a result, the _"Years Since PhD"_ column will be practically ignored. You can see this problem visualized in the left part of the figure below.
 
 ![](img/AcademicSalaries.png)
 
-A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ columns to the same scale, for example [0..1]. You can see the result in the right hand side of the figure above.
+A common solution is to normalize both _"Salary"_ and _"Years Since PhD"_ columns to be on a common scale, for example [0..1]. You can see the result in the right hand side of the figure above. It is easier to spot patterns in a normalized dataset, both for human eye and for a machine learning algorithm.
+
+**Note.** It is important to save the normalization parameters that will allow us to restore the original values of a column (in this example, those parameters are min and max values).
 
 ### Example 2. Movie Ratings
 
-Now let us look at the second example. The [Movie Ratings](https://www.kaggle.com/trpearce/movie-ratings) dataset published at [Kaggle](https://www.kaggle.com) describes 562 movies with the following columns: _Title_, _Genre_, _Rotten Tomatioes Ratings_, _Audience Ratings_, _Budget_, and _Year of Release_. We will select only those movies that belong to _"Action"_ or _"Comedy"_ genre and analyse the data from the following three columns:
+Now let us look at the second example that illustrates a different kind of normalization. The [Movie Ratings](https://www.kaggle.com/trpearce/movie-ratings) dataset published at [Kaggle](https://www.kaggle.com) describes 562 movies with the following columns: _Title_, _Genre_, _Rotten Tomatioes Ratings_, _Audience Ratings_, _Budget_, and _Year of Release_. We will select only those movies that belong to _"Action"_ or _"Comedy"_ genre and analyse the data from the following three columns:
 
 | Column name | Values |
 |---|---|
-| Genre | "Action" or "Comedy" |
+| Genre | _"Action"_ or _"Comedy"_ |
 | Budget (million $) | Integer in range [0..300] |
 | Audience Ratings % | Integer in range [0..100] |
 
-As you can see in the left hand side of the visualization below, the values of the _Budget_ column are skewed to the left. This may decrease the performance of some algorithms, make it harder for them to find the optimal solution and require more time to converge. A simple solution in this case would be to normalize the values of the Budget column by replacing _Budget_ with _log(Budget)_ -- see the visualization on the right.
+As you can see in the left part of the visualization below, the values of the _Budget_ column are skewed to the left. This may decrease the performance of some algorithms -- make it harder for them to find the optimal solution and require more time to converge. If you work with a dataset like thar, a common approach is to normalize the values of the _Budget_ column by replacing _Budget_ with _log(Budget)_ -- see the visualization on the right.
 
 ![](img/MovieRatings.png)
 
 ## Different Types of Normalization
 
+As you have seen in the examples above, there are many different types of normalization. In this section, I will describe some of the most commonly used approaches. You do not need to remember all of them, in fact, most textbooks describe only the first two normalization techniques: _min-max_ and _z-score normalization_. I briefly mention other approaches just to give you a more general idea of what normalization is about.
+
 ### Min-max Normalization (Linear Scaling)
 
-The most simple and most commonly used normalization is a simple linear scaling also known as [min-max normalization](https://en.wikipedia.org/wiki/Feature_scaling). It transforms the numbers in a column from range $[x_{min}..x_{max}]$ to the unit range $[0..1]$. For every number $x_i$ taken from the column $X = \{ x_i \}_{i=1}^n$, the normalized value $x_i'$ is calculated as:
+The most simple and most commonly used normalization technique is linear scaling also known as [min-max normalization](https://en.wikipedia.org/wiki/Feature_scaling). It transforms the numbers in a column from range $[x_{min}..x_{max}]$ to the unit range $[0..1]$. For every number $x_i$ taken from the column $X = \{ x_i \}_{i=1}^n$, the normalized value $x_i'$ is calculated as:
 
 $$
 x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}}
@@ -57,6 +61,8 @@ If you want to transform your numbers to a custom range $[a..b]$, you can use a 
 $$
 x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}} (b - a) + a
 $$
+
+The major problem with this basic technique is that your are required to know the range of your data in advance. This is OK if you simply have an unlabeled dataset and you want to mine some interesting patterns from it (e.g. identify clusters using the K-means algorithm). However, if you are training your algorithm on a collected dataset with the purpose of later applying it to the new data that comes to you from a business application, those new values may fall out of range of your original data and cause min-max normalization to overflow (e.g. you identify clusters in your client base and assign new clients to those clusters, or you train a supervised regression model to make predictions based on the new input).
 
 ### Z-Score Normalization
 
@@ -76,7 +82,7 @@ $$
 \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2}
 $$
 
-The range of the normalized values $x_i'$ is unknown but they should be relatively small. For example, if $X$ follows the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) then approximately 95% of normalized values $x_i'$ should fall into the range of $[-2..2]$ (see [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) for explanation).
+This form of normalization overcomes the drawback of min-max technique: you are not required to know the possible range of values in advance. However, unlike min-max which guarantees that the normalized values will be between 0 and 1, the resulting range of z-score values is unknown. That being said, this range will be relatively small. For example, if $X$ follows the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) then approximately 95% of normalized values $x_i'$ will fall into the range of $[-2..2]$ (see [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) for explanation).
 
 Another variant of z-score normalization replaces standard deviation $\sigma$ with mean absolute deviation $s_x$ (MAD) calculated as:
 
@@ -88,7 +94,7 @@ Residuals (deviations from the mean) $|x_i - \mu |$ are not squared like the one
 
 ### Log Scaling
 
-When a handful of values have many data points while most other values have few points, we can use the logarithmic scaling to get a more narrow distribution and improve the performance of some machine learning models.
+This is the normalization technique that was used in Example 2 which was discussed above. When a handful of values have many data points while most other values have few points, we can use the logarithmic scaling to get a more narrow distribution and improve the performance of some machine learning models.
 
 $$
 x_i' = \log(x_i)
@@ -102,31 +108,15 @@ $$
 x_i' = \frac{x_i}{10^j}
 $$
 
-where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $. For example, let's use decimal scaling to normalize the following array of numbers:
-
-$$
-X = \{ -100, 250, -300, 500, 974, 100 \}
-$$
-
-In this case, $j=3$ and $10^j=1000$, which gives us:
-
-$$
-X' = \{ -0.1, 0.25, -0.3, 0.5, 0.974, 0.1 \}
-$$
-
-## Which Normalization Technique Should You Use?
-
-The most frequently used normalization techniques are the min-max normalization and z-score normalization. Other methods that I described in the previous section can be useful in some special cases. For example, clipping can be used to remove outliers, log scaling can help if your data is shifted to the left.
-
-The main difference between min-max and z-score normalization techniques in that the prior one requires you to know the range of your data. If you are using normalization with a supervised learning algorithm when new values can come after training, those values can fall outside of the range, which would cause min-max normalization to exceed its bounds. On the other handm if you are using an unsupervised learning algorithm such as k-means clustering and you will not be applying your trained model to the new data, you can use min-max. The advantage of min-max over z-score is that we know the resulting range [0,1].
+where $j$ is the smallest integer such that $ \max(|x_i'|) < 1 $. For example, let's use decimal scaling to normalize the following array of numbers: $X = \{ -100, 250, -300, 500, 974, 100 \}$. In this case, $j=3$ and $10^j=1000$, which gives us $X' = \{ -0.1, 0.25, -0.3, 0.5, 0.974, 0.1 \}$
 
 ## Confusing Terminology
 
-As it is with many concepts in the field of machine learning and AI, the terminology which is used to described normalization is very inconsistent accross literature. In some articles, the term _"normalization"_ refers to the min-max technique only and is contrasted with a z-score _"standardization"_. Other articles use the term _"scaling"_ for min-max and reserve _"normalization"_ for z-score.
+As it is with many concepts in machine learning and AI, the terminology that is used to describe normalization is inconsistent accross literature. In some articles, the term _"normalization"_ refers to the min-max technique only and is contrasted with a z-score _"standardization"_. Other articles use the term _"scaling"_ for min-max and reserve _"normalization"_ for z-score.
 
 Perhaps, this confusion comes from the field of statistics, where _"normalization"_ sometimes has other connotations (e.g. transforming data to better fit the normal districution).
 
-I adopt the terminology that is more commonly used in data processing: _"normalization"_ and _"standardization"_ are two terms that can be used interchangeably and encapsulate different techniques such as _"min-max normalization"_ (a.k.a. _"linear scaling"_) and _"z-score normalization"_.
+I adopt the terminology that is more common in data processing: _"normalization"_ and _"standardization"_ are two terms that can be used interchangeably and encapsulate different techniques such as _"min-max normalization"_ (a.k.a. _"linear scaling"_) and _"z-score normalization"_.
 
 ## References
 
