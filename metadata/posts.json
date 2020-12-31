@@ -28,5 +28,11 @@
     "title": "Understanding Normalization in Machine Learning",
     "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
     "datePublished": "December 12, 2020"
+  },
+  {
+    "id": "kmeans",
+    "title": "K-Means Clustering",
+    "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
+    "datePublished": "December 31, 2020"
   }
 ]
