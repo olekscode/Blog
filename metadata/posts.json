@@ -34,5 +34,11 @@
     "title": "K-Means Clustering",
     "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
     "datePublished": "December 31, 2020"
+  },
+  {
+  	"id": "deprewriter",
+  	"title": "DepRewriting: Smart Deprecations that Automatically Fix Your Code",
+  	"categories": ["Software Evolution", "Programming", "Pharo"],
+  	"datePublished": "January 14, 2020"
   }
 ]
