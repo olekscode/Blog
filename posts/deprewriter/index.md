@@ -1,10 +1,12 @@
-# DepRewriting: Smart Deprecations that Automatically Fix Your Code
+# DepRewriter: Smart Deprecations that Automatically Fix Your Code
 
-In this post, I will use the simple terms and several examples to explain you the new technology that we have introcuced in our recent article.
+A couple of months ago, we have submitted a research article to the Journal of Object Technologies, in which we introduced an idea of smart deprecations that can automatically fix broken code. As you call the deprecated method, it signals a warning and then dynamically rewrites the outdated method call. This is done using the transformation rule provided by library developers as part of deprecation statement. The article is still under review and not yet accesssible to general public. But in this post, I will use simple terms and several examples to quickly explain you the general idea behing DepRewriter.
 
-## How Deprecations Work?
+## What are Deprecations?
 
-Imagine the following example. A group of developers released a small open source library `Collection v1.0.0`. This could be part of the code from `Collection.jar`:
+I will start by explaining method deprecations. If you are already familiar with them, feel free to jump to the next section.
+
+Imagine the following example. You are using a little open source Java library called `Collection v1.0.0`. It provides a class `Collection` which has a method `includesAllOf()`. The method checks if all evement of another collection are included in this collection.
 
 ```Java
 public class Collection<E> {
@@ -17,16 +19,22 @@ public class Collection<E> {
   ...
 }
 ```
-You decided to use this library, so you import it in your java file and write:
+In your code you use this library in the following way:
 
 ```Java
 import Collection;
 ...
 products.includesAllOf([“apple”, “pear”]);
 ```
-In second version of the library, developers decided to rename `includesAllOf()` method to `includesAll()`. As a result, your code calls `includesAllOf()` and raises the `NotFound` exception. This change in the library is called the **breaking change**. It causes client code that was designed for the old version of the library to break on the new version.
+After some time, the new version of `Collection` is released, `v2.0.0`. In this version, the method `includesAllOf()` was renamed to `includesAll()`.
 
-To ensure that client software does not break, developers do the following: they add a new method `includesAll()` and keep the old method `includesAllOf()` but mark it as **deprecated**. The client code will work without errors, but it will raise a warning notifying client developers that the method `includesAllOf()` will be removed in the next release.
+Now your code which is still calling `includesAllOf()` will break by raising the `NotFound` exception. In this case, we say that developers introduced the **breaking change** into the `Collection` library. It makes client code that was designed for the old version of the library incompatible with the new version.
+
+The common way of fixing these problems are **deprecations**. Instead of immeditely removing the feature from a software library, it is first marked as deprecated (_"to be removed in the future"_) which ensures backward compatibility and gives client developers time to update their code.
+
+In our case, `Collection v2.0.0` should not replace `includesAllOf()` with `includesAll()`. Instead, it should keep the old method `includesAllOf()`, mark it as deprecated, and also add a new method `includesAll(). Then in the following release `Collection v3.0.0` the deprecated method `includesAllOf()` will be finally removed.
+
+
 
 ```Java
 public class Collection<E> {
@@ -45,7 +53,7 @@ public class Collection<E> {
 }
 ```
 
-This gives client developers time to fix their code and reduces the potential number of errors.
+**Note:** In this case, the old and the new methods have same implementation so to avoid code duplication, we simply call the new method from the old one.
 
 ## Code Transformation Rules
 
@@ -60,3 +68,7 @@ In Pharo, there is a special pattern matching language that allows us to search 
 | \`. | matches language statement (assignment, return, messages, ...) |  |
 | \`# | matches literals (string, boolean, number, symbols) | `‘#lit` size matches `3 size`, `’foo’ size`, `true size` |
 | {} | used to match the enclosed code |  |
+
+## Transforming Deprecations
+
+Now let's add 0
