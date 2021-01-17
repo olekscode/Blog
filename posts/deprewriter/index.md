@@ -1,6 +1,6 @@
 # DepRewriter: Smart Deprecations that Automatically Fix Your Code
 
-A couple of months ago, we have submitted a research article to [The Journal of Object Technology](http://www.jot.fm/), in which we introduced an idea of smart deprecations that can automatically fix broken code. As you call the deprecated method, it signals a warning and then dynamically rewrites the outdated method call. This is done using the transformation rule provided by library developers as part of deprecation statement. The article is still under review and not yet accesssible to general public. But in this post, I will use simple terms and several examples to quickly explain you the general idea behing DepRewriter.
+A couple of months ago, we have submitted a research article to [The Journal of Object Technology](http://www.jot.fm/), in which we present the smart deprecations that can automatically fix broken code. When you call a deprecated method, it signals a warning and then dynamically rewrites the outdated method call. This is done using the transformation rule provided by library developers as part of deprecation statement. The article is still under review and not yet accesssible to general public. But in this post, I will use simple terms and several examples to quickly explain you the general idea behing DepRewriter.
 
 ## What are Deprecations?
 
@@ -55,27 +55,29 @@ public class Collection<E> {
 
 **Note:** In this case, the old and the new methods have same implementation so to avoid code duplication, we simply call the new method from the old one.
 
-## The Problems with Deprecations
-
-
-
-## A Simple Language for Expressing Code Transformations
-
-To express the transformations that must be applied to client code in order to update it, we need a special language.
-
-In Pharo, there is a special pattern matching language that allows us to search through code and replace portion of code with another.
-
-| **Token** | **Meaning** | **Example** |
-|---|---|---|
-| \` | defines a variable | `'receiver foo` matches `x foo`, `OrderedCollection foo`, or `self foo` |
-| \`@ | matches any subtree | `'@rec foo` matches `self foo` (with rec = `self`), `self size foo` (with rec = `self size`), or `(x at: 2) foo` (with rec = `(x at: 2)`) |
-| \`. | matches language statement (assignment, return, messages, ...) |  |
-| \`# | matches literals (string, boolean, number, symbols) | `‘#lit` size matches `3 size`, `’foo’ size`, `true size` |
-| {} | used to match the enclosed code |  |
 
 ## Transforming Deprecations
 
-Now let's add 0
+With every new release of a software library, certain parts of API may be deprecated. Those deprecations are reported to client developers either as part of documentation (release notes) or in the form of annotation (as demonstrated in the previous section). It is then the responsibility of client developers to find all calls to deprected methods in their code base and either remove them or replace them with correct substite from the new API. Modern IDEs can make the job easier by providing powerful search tools, highlighting deprecated code, and displaying the line of code from which the deprecation warning was fired. Still, it is a boring and repetitive task that could be simplified and partially automated.
+
+[Pharo](https://pharo.org/) provides a poverful engine of _transforming deprecations_ (a.k.a. _rewriting deprecations_). When deprecating a method, library developers can specify a transformation rule that will be used to automatically fix client code. Here is the example of a deprecated method with a transformation rule written in Pharo:
+
+```Smalltalk
+Collection >> includesAllOf: values
+  self
+    deprecated: ‘Use #includesAll: instead’
+    transformWith: ‘`@rec includesAllOf: `@arg’ ->
+                   ‘`@rec includesAll: `@arg’.
+
+  ^ self includesAll: values
+```
+
+The first line declares a method `includesAllOf:` of class `Collection`. The method takes one argument: `value`. Lines 2-5 deprecate this method by calling abother method `deprecated:transformWith:` which is undestood by all subclasses of `Object`. The first argument is a deprecation string that will be displayed in the deprecation warning: `'Use #includesAll: instead'`. The second argument is a transformation rule: `'‘@rec includesAllOf: ’@arg' -> '’@rec includesAll: ’@arg'`. The last line of the deprecated method calls the new method `includesAll:`.
+
+The transformation rule consists of two parts: antecedent (left hand side) and consequent (right hang side). Both are expressions written in a pattern matching language (similar to regex but for code). Antecedent defines the
+
+This way, when client calls the deprecated method, he/she will receive a deprecation warning and 
+
 
 ## References
 
