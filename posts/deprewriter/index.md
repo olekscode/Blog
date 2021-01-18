@@ -74,9 +74,11 @@ Collection >> includesAllOf: values
 
 The first line declares a method `includesAllOf:` of class `Collection`. The method takes one argument: `value`. Lines 2-5 deprecate this method by calling abother method `deprecated:transformWith:` which is undestood by all subclasses of `Object`. The first argument is a deprecation string that will be displayed in the deprecation warning: `'Use #includesAll: instead'`. The second argument is a transformation rule: `'‘@rec includesAllOf: ’@arg' -> '’@rec includesAll: ’@arg'`. The last line of the deprecated method calls the new method `includesAll:`.
 
-The transformation rule consists of two parts: antecedent (left hand side) and consequent (right hang side). Both are expressions written in a pattern matching language (similar to regex but for code). Antecedent defines the
+The transformation rule consists of two parts: antecedent (left hand side) and consequent (right hang side). Both are expressions written in a pattern matching language (similar to regex but for code). Antecedent matches the piece of code that needs to be replaced and consequent defines the replacement. Tokens that start with '@ are named variables. The antecedent above matches all method calls to includesAllOf:. The receiver is stored in variable '@rec, the argent is stored in variable '@arg. Then consequent expression generates the call to includesAll: using the same receiver and argument. 
 
-This way, when client calls the deprecated method, he/she will receive a deprecation warning and 
+When client calls the deprecated method includesAllOf:, he/she will receive a deprecation warning, then the deprecated method call inside client code will be automatically replaced with the call to includesAll:. Finally, the new method includesAll: will be called.
+
+Client developer can change the configurations to disable warnings or disable automatic rewriting and be asked explicitly before any changes to the code are made.
 
 
 ## References
