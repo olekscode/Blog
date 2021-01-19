@@ -60,7 +60,7 @@ public class Collection<E> {
 
 With every new release of a software library, certain parts of API may be deprecated. Those deprecations are reported to client developers either as part of documentation (release notes) or in the form of annotation (as demonstrated in the previous section). It is then the responsibility of client developers to find all calls to deprected methods in their code base and either remove them or replace them with correct substite from the new API. Modern IDEs can make the job easier by providing powerful search tools, highlighting deprecated code, and displaying the line of code from which the deprecation warning was fired. Still, it is a boring and repetitive task that could be simplified and partially automated.
 
-[Pharo](https://pharo.org/) provides a poverful engine of _transforming deprecations_ (a.k.a. _rewriting deprecations_). When deprecating a method, library developers can specify a transformation rule that will be used to automatically fix client code. Here is the example of a deprecated method with a transformation rule written in Pharo:
+[Pharo](https://pharo.org/) provides a poverful engine of _transforming deprecations_ (a.k.a. _rewriting deprecations_) called _DepRewriter_. When deprecating a method, library developers can specify a transformation rule that will be used to automatically fix client code. Here is the example of a deprecated method with a transformation rule written in Pharo:
 
 ```Smalltalk
 Collection >> includesAllOf: values
@@ -78,8 +78,9 @@ The transformation rule consists of two parts: antecedent (left hand side) and c
 
 When client calls the deprecated method includesAllOf:, he/she will receive a deprecation warning, then the deprecated method call inside client code will be automatically replaced with the call to includesAll:. Finally, the new method includesAll: will be called.
 
-Client developer can change the configurations to disable warnings or disable automatic rewriting and be asked explicitly before any changes to the code are made.
+This approach is especially valuable for dynamically-typed languages (e.g. Pharo, Python etc.). The method `includesAllOf:` may be implemented by multiple classes, so we can not simply replace all calls to `includesAllOf:` with `includesAll:` without knowing the type of receiver (some of those calls might be invoking another non-deprecated method with the same name). DepRewriter overcomes this problem by finding the correct method call dynamically by navigating the call-stack. Then it automatically fixes client code without interrupting its execution.
 
+Client developers can change the configurations of DepRewriter to disable warnings or disable automatic rewriting and be asked explicitly before any changes to their code are made.
 
 ## References
 

@@ -37,7 +37,7 @@
   },
   {
   	"id": "deprewriter",
-  	"title": "DepRewriting: Smart Deprecations that Automatically Fix Your Code",
+  	"title": "DepRewriter: Smart Deprecations that Automatically Fix Your Code",
   	"categories": ["Software Evolution", "Programming", "Pharo"],
   	"datePublished": "January 14, 2020"
   }
