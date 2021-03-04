@@ -3,42 +3,84 @@
     "id": "covid19-analysis",
     "title": "COVID-19 Data Analysis using Pharo DataFrame",
     "categories": ["Data Analysis", "Pharo", "DataFrame"],
-    "datePublished": "April 6, 2020"
+    "datePublished": "April 6, 2020",
+    "draft": false
   },
   {
     "id": "library-update-part1",
     "title": "Understanding the Problem of Library Update. Part 1",
     "categories": ["Library Update", "Library Migration", "Research"],
-    "datePublished": "August 18, 2020"
+    "datePublished": "August 18, 2020",
+    "draft": false
   },
   {
     "id": "library-update-part2",
     "title": "Understanding the Problem of Library Update. Part 2",
     "categories": ["Library Update", "Library Migration", "Research"],
-    "datePublished": "September 17, 2020"
+    "datePublished": "September 17, 2020",
+    "draft": true
   },
   {
     "id": "equality-and-hash",
     "title": "Overriding Equality and Hash in Pharo",
     "categories": ["Pharo", "Programming", "OOP"],
-    "datePublished": "September 25, 2020"
+    "datePublished": "September 25, 2020",
+    "draft": false
   },
   {
     "id": "normalization",
     "title": "Understanding Normalization in Machine Learning",
     "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
-    "datePublished": "December 12, 2020"
+    "datePublished": "December 12, 2020",
+    "draft": false
   },
   {
     "id": "kmeans",
     "title": "K-Means Clustering",
     "categories": ["Machine Learning", "Data Science", "Statistics", "Data"],
-    "datePublished": "December 31, 2020"
+    "datePublished": "December 31, 2020",
+    "draft": true
   },
   {
   	"id": "deprewriter",
   	"title": "DepRewriter: Smart Deprecations that Automatically Fix Your Code",
   	"categories": ["Software Evolution", "Programming", "Pharo"],
-  	"datePublished": "January 14, 2020"
+  	"datePublished": "January 14, 2020",
+    "draft": false
+  },
+  {
+    "id": "multivariate-normal-distribution",
+    "title": "Multivariate Normal Distribution in Pharo",
+    "categories": ["Pharo", "Statistics", "Mathematics"],
+    "datePublished": "March 4, 2021",
+    "draft": true
+  },
+  {
+    "id": "in-memory-file-system",
+    "title": "Testing with the In-Memory File System",
+    "categories": ["Pharo", "Programming", "Testing"],
+    "datePublished": "March 4, 2021",
+    "draft": true
+  },
+  {
+    "id": "ngram-model",
+    "title": "N-gram Language Models",
+    "categories": ["Natural Language Processing", "Statistics", "Machine Learning"],
+    "datePublished": "March 4, 2021",
+    "draft": true
+  },
+  {
+    "id": "delayed-error",
+    "title": "Delayed Error in C",
+    "categories": ["C", "Programming", "Programming Practices"],
+    "datePublished": "Septemeber 1, 2020",
+    "draft": true
+  },
+  {
+    "id": "mining-repetitive-changes",
+    "title": "Mining Repetitive Changes from Source Code History",
+    "categories": ["Data Mining", "Software Evolution", "Commit History"],
+    "datePublished": "March 4, 2021",
+    "draft": true
   }
 ]
