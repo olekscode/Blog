@@ -1,4 +1,14 @@
-# Univariate and Multivariate Normal Distributions
+# Normal Distribution: A Programmer's Perspective
+
+Random number generators that are available in most modern programming languages generate numbers in range $[0,1]$ with uniform probability. This means that a number $0.7$ has the same chance to be generated as the number $0.1$.
+
+![](img/uniform.png)
+
+Software developers are very used to this form of randomness, however, the data that comes to us from the real world is rarely distributed uniformely. For example, the ...
+
+![](img/normal.png)
+
+## Normal Distribution 
 
 Data can be distributed in different ways. It can have more values on the left or the right, be symmetrical, or just evenly distributed over some range.
 
