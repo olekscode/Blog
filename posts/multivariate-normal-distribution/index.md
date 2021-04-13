@@ -1,6 +1,6 @@
 # Normal Distribution: A Programmer's Perspective
 
-Random number generators that are available in most modern programming languages generate numbers in range $[0,1]$ with uniform probability. This means that a number $0.7$ has the same chance to be generated as the number $0.1$.
+Pseudo-random number generators that are available in most modern programming languages generate numbers in range $[0,1]$ with uniform probability. This means that a number $0.7$ has the same chance to be generated as the number $0.1$.
 
 ![](img/uniform.png)
 

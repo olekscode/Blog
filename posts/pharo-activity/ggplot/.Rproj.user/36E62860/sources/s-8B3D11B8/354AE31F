@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1616677581730.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "354AE31F",
+    "lastKnownWriteTime" : 1616675534,
+    "last_content_update" : 1616675534,
+    "path" : "~/Documents/Research/Blog/posts/pharo-activity/ggplot/theme.R",
+    "project_path" : "theme.R",
+    "properties" : {
+        "cursorPosition" : "18,11",
+        "scrollLine" : "4"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

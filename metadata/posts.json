@@ -82,5 +82,12 @@
     "categories": ["Data Mining", "Software Evolution", "Commit History"],
     "datePublished": "March 4, 2021",
     "draft": true
+  },
+  {
+    "id": "ml-resources",
+    "title": "Best Resources to Study Machine Learning",
+    "categories": ["Machine Leraning", "Books", "Useful Resources"],
+    "datePublished": "April 13, 2021",
+    "draft": true
   }
 ]
