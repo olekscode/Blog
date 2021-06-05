@@ -89,5 +89,12 @@
     "categories": ["Machine Leraning", "Books", "Useful Resources"],
     "datePublished": "April 13, 2021",
     "draft": true
+  },
+  {
+    "id": "sorting-in-pharo",
+    "title": "How to Sort a Collection in Pharo",
+    "categories": ["Pharo", "Programming", "Basics"],
+    "datePublished": "June 5, 2021",
+    "draft": false
   }
 ]
