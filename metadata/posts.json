@@ -96,5 +96,12 @@
     "categories": ["Pharo", "Programming", "Basics"],
     "datePublished": "June 5, 2021",
     "draft": false
+  },
+  {
+    "id": "pharo-ffi",
+    "title": "FFI Basics: Calling Native C Functions from Pharo",
+    "categories": ["Pharo", "Programming", "FFI", "C"],
+    "datePublished": "August 15, 2021",
+    "draft": true
   }
 ]
