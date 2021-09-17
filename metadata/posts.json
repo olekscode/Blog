@@ -49,6 +49,13 @@
     "draft": false
   },
   {
+    "id": "deprewriter-fr",
+    "title": "DepRewriter: Dépréciations intelligentes qui corrigent automatiquement votre code",
+    "categories": ["Software Evolution", "Programming", "Pharo"],
+    "datePublished": "September 17, 2021",
+    "draft": false
+  },
+  {
     "id": "multivariate-normal-distribution",
     "title": "Multivariate Normal Distribution in Pharo",
     "categories": ["Pharo", "Statistics", "Mathematics"],
