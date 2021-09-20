@@ -1,6 +1,6 @@
-# DepRewriter: Dépréciations intelligentes qui corrigent automatiquement votre code
+# DepRewriter: Dépréciations intelligentes pour la correction automatique de code client
 
-Il y a quelques mois, nous avons soumis un article de recherche à [The Journal of Object Technology](http://www.jot.fm/), dans lequel nous présentons les dépréciations intelligentes qui peuvent automatiquement réparer le code cassé. Lorsque vous appelez une méthode obsolète, elle signale un avertissement, puis réécrit dynamiquement l'appel de méthode obsolète. Cela se fait à l'aide de la règle de transformation fournie par les développeurs de bibliothèques dans le cadre de la déclaration de dépréciation. L'article est toujours en cours de révision et n'est pas encore accessible au grand public. Mais dans cet article, j'utiliserai des termes simples et plusieurs exemples pour vous expliquer rapidement l'idée générale derrière DepRewriter.
+Il y a quelques mois, nous avons soumis un article de recherche à [The Journal of Object Technology](http://www.jot.fm/), dans lequel nous présentons les dépréciations intelligentes qui peuvent automatiquement réparer le code cassé. Lorsque vous appelez une méthode obsolète, cette dernière signale un avertissement, puis l'outil réecrit dynamiquement l'appel de méthode obsolète. Cela se fait à l'aide de la règle de transformation fournie par les développeurs de bibliothèques dans le cadre de la déclaration de dépréciation. L'article est toujours en cours de révision et n'est pas encore accessible au grand public. Cependant, dans ce blog, j'utiliserai des termes simples et plusieurs exemples pour vous expliquer rapidement l'idée générale derrière DepRewriter.
 
 ## Que sont les dépréciations ?
 

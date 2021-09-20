@@ -50,7 +50,7 @@
   },
   {
     "id": "deprewriter-fr",
-    "title": "DepRewriter: Dépréciations intelligentes qui corrigent automatiquement votre code",
+    "title": "DepRewriter: Dépréciations intelligentes pour la correction automatique de code client",
     "categories": ["Software Evolution", "Programming", "Pharo"],
     "datePublished": "September 17, 2021",
     "draft": false
@@ -109,6 +109,13 @@
     "title": "FFI Basics: Calling Native C Functions from Pharo",
     "categories": ["Pharo", "Programming", "FFI", "C"],
     "datePublished": "August 15, 2021",
+    "draft": true
+  },
+  {
+    "id": "linear-regression",
+    "title": "Linear Regression",
+    "categories": ["Machine Learning", "Data Science", "AI"],
+    "datePublished": "September 19, 2021",
     "draft": true
   }
 ]
