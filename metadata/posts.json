@@ -117,5 +117,12 @@
     "categories": ["Machine Learning", "Data Science", "AI"],
     "datePublished": "September 19, 2021",
     "draft": true
+  },
+  {
+    "id": "shared-pools",
+    "title": "Design Coffee Club: Shared Pools",
+    "categories": ["Design Coffee Club", "Software Design", "Software Architecture", "Pharo", "Programming", "OOP"],
+    "datePublished": "September 27, 2021",
+    "draft": true
   }
 ]
