@@ -63,7 +63,15 @@ However, it can be executed again manually.
 Shared variables of class `Color` from the example above are initialized like this:
 
 ```Smalltalk
-Color class >> initialize    ComponentMask := 1023.    HalfComponentMask := 512.    ComponentMax := 1023.0.    RedShift := 20.    GreenShift := 10.    BlueShift := 0.    self initializeColorRegistry.    self initializeGrayToIndexMap.
+Color class >> initialize
+    ComponentMask := 1023.
+    HalfComponentMask := 512.
+    ComponentMax := 1023.0.
+    RedShift := 20.
+    GreenShift := 10.
+    BlueShift := 0.
+    self initializeColorRegistry.
+    self initializeGrayToIndexMap.
     ...```
 
 Those values are the same for every color in the system.
