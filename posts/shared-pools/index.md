@@ -1,7 +1,7 @@
 # Design Coffee Club: Shared Pools
 
 Design Coffee Club is a nice initiative that we started at [RMoD](https://rmod.inria.fr).
-Once a week, we meet and discuss some topic related to software design.
+Once a week, we meet and discuss a topic related to software design.
 This week, [Stéphane Ducasse](http://stephane.ducasse.free.fr/) was presenting shared pools in [Pharo](https://pharo.org). In this blog post, I will briefly summarize his lecture.
 
 In Pharo, there are three types of variables that can be shared among different classes:
@@ -150,6 +150,10 @@ If we modify a variable in a shared poo, this change will be applied globally an
 **Problem:** Shared variables can not be substituted without changing the source code or modifying their values (something that should not be done). This makes it hard to test the code that is using a shared variable. Especially if the variable contains a large amount of data, database connection, network connection, etc. This raises a question: _How can we use a shared variable by default but also substitute it with an instance variable if needed?_
 
 **Solution:** We can create an instance variable with the same name as the shared variable. In the `initialize` method (acts like a constructor in Pharo), we assign the default value to the instance variable - the value of a shared variable. Outside the `initialize` method, we never access the shared variable itself but only the instance variable (which points to the same object by default). We also provide a setter for the instance variable which allows us to change its value if needed.
+
+The figure below shows an example of a `Scanner` class that has one shared variable `TypeTable`. This variable is initialized in the class side `initialize` method. This table can be very big and take a lot of memory but it will only be created once, when the code is loaded in the image. In the instance side `initialize` method, the reference to the shared variable `TypeTable` is assigned to the instance variable `typeTable`. After this, the shared variable is never accessed directly in the `Scanner` class. All other methods use the `typeTable` instance variable. This allows us to test the `Scanner` class independently of a type table by using a setter `typeTable:` to substitute the real table (stored in a shred variable) with a fake object (e.g., a mock table).
+
+![](img/ScannerExample.png)
 
 ## References
 
