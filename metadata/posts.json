@@ -123,6 +123,6 @@
     "title": "Design Coffee Club: Shared Pools",
     "categories": ["Design Coffee Club", "Software Design", "Software Architecture", "Pharo", "Programming", "OOP"],
     "datePublished": "September 27, 2021",
-    "draft": true
+    "draft": false
   }
 ]
