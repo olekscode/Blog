@@ -4,30 +4,78 @@ Design Coffee Club is a nice initiative that we started at [RMoD](https://rmod.i
 Once a week, we meet and discuss some topic related to software design.
 This week, [Stéphane Ducasse](http://stephane.ducasse.free.fr/) was presenting shared pools in [Pharo](https://pharo.org). In this blog post, I will briefly summarize his lecture.
 
-In Pharo, there are three types of shared variables:
+In Pharo, there are three types of variables that can be shared among different classes:
 
-* **Global variables** - accessible everywhere.
-* **Class variables** - accessible both from the class side and the instance side of a class that defines them as well as all of its subclasses.
-* **Shared pools** - shared among the group of classes that do not need to be in the same hierarchy.
+* **Global Variables** - accessible everywhere.
+* **Shared Variables** - accessible both from the class side and the instance side of a class that defines them as well as all of its subclasses.
+* **Shared Pools** - groups of shared variables that can be used in different classes that do not need to be in the same hierarchy.
+
+By convention, the names of instance variables and class instance variables in Pharo begin with a lowercase letter. The names of global variables and shared variables begin with an uppercase letter.
 
 ## Global Variables
 
-## Class Variables
+Global variables can be accessed anywhere in Pharo image.
+They are stored in the namespace called `Smalltalk` which is implemented as an instance of the class `SystemDictionary`. Every time we access a class in Pharo, we do it through a global variable.
 
-A class variable allows us to share a value among multiple classes of the same hierarchy.
+```Smalltalk
+Array new.
+```
+
+In the example above, `Array` is a global variable associated with an instance of a metaclass `Array class`. When this instance receives a `new` message, it creates new instance of class `Array`.
+
+The list of all global variables in the image can be accessed through `Smalltalk globals` We can use the globals dictinary to create new global variables:
+
+```Smalltalk
+Smalltalk globals at: #NewGlobalName put: 42.
+```
+
+Or simply by assigning a value to an undeclared variable that starts with a capital letter:
+
+```Smalltalk
+NewGlobalVariable := 42.
+```
+
+Executing this line anywhere in the image will automatically create a new global variable.
+
+In general, it is not considered a good practice to use global variables in Pharo. When possible, it is recommended to use shared variables or shared pools instead.
+
+## Shared Variables (a.k.a. Class Variables)
+
+A shared variable allows us to share a value among multiple classes of the same hierarchy.
 It can be accessed both from class side and the instance side of a class that defines it as well as all of its subclasses.
 
-### Class Variables VS Class Instance Variables
+For example, here is a definition of class color with 4 instance variables (slots, different for every instance) and 11 shared variables (shared by all instances as well as the class itself and all its subclasses).
 
-The _class variables_ in Pharo should not be confused with _class instance variables_.
+```Smalltalk
+Object << #Color
+    slots: { #rgb . #cachedDepth . #cachedBitPattern . #alpha };    sharedVariables: { #RedShift . #CachedColormaps . #IndexedColors .
+        #ComponentMax . #ComponentMask . #ColorRegistry . #GreenShift .
+        #BlueShift . #GrayToIndexMap . #HalfComponentMask . #MaskingMap };    tag: 'Base';    package: 'Colors'
+```
+
+Shared variables can be initialized in the class side `initialize` method.
+This method will be evexuted only once when the code is loaded into the memory.
+However, it can be executed again manually.
+
+Shared variables of class `Color` from the example above are initialized like this:
+
+```Smalltalk
+Color class >> initialize    ComponentMask := 1023.    HalfComponentMask := 512.    ComponentMax := 1023.0.    RedShift := 20.    GreenShift := 10.    BlueShift := 0.    self initializeColorRegistry.    self initializeGrayToIndexMap.
+    ...```
+
+Those values are the same for every color in the system.
+
+### Shared Variables VS Class Instance Variables
+
+In the past, shared variables were called class variables.
+Because of that, they were often confused with class instance variables.
+
 Class instance variables are shared among all instances of the class but not its subclasses.
-For example, we can add a class instance variable `count` to keep track of the number of instances of a given class.
+For example, we can use a class instance variable `count` to keep track of the number of instances of a given class.
 But every subclass will have its own count.
 
-Class variables are different. They are shared among the subclasses.
-This means that if a `count` was implemented as a class variable, once incremented, it would change for all subclasses.
-
-By convention, the names of instance variables and class instance variables in Pharo begin with a lowercase letter. The names of shared variables (global variables, class variables, etc.) begin with an uppercase letter).
+Shared variables are different. They are shared among the subclasses.
+This means that if `Count` was implemented as a shared variable, once incremented, it would change for all subclasses.
 
 ## Shared Pools
 
