@@ -151,10 +151,11 @@ If we modify a variable in a shared poo, this change will be applied globally an
 
 **Solution:** We can create an instance variable with the same name as the shared variable. In the `initialize` method (acts like a constructor in Pharo), we assign the default value to the instance variable - the value of a shared variable. Outside the `initialize` method, we never access the shared variable itself but only the instance variable (which points to the same object by default). We also provide a setter for the instance variable which allows us to change its value if needed.
 
-The figure below shows an example of a `Scanner` class that has one shared variable `TypeTable`. This variable is initialized in the class side `initialize` method. This table can be very big and take a lot of memory but it will only be created once, when the code is loaded in the image. In the instance side `initialize` method, the reference to the shared variable `TypeTable` is assigned to the instance variable `typeTable`. After this, the shared variable is never accessed directly in the `Scanner` class. All other methods use the `typeTable` instance variable. This allows us to test the `Scanner` class independently of a type table by using a setter `typeTable:` to substitute the real table (stored in a shred variable) with a fake object (e.g., a mock table).
-
 ![](img/ScannerExample.png)
+
+The figure above shows an example of a `Scanner` class that has one shared variable `TypeTable`. This variable is initialized in the class side `initialize` method. This table can be very big and take a lot of memory but it will only be created once, when the code is loaded in the image. In the instance side `initialize` method, the reference to the shared variable `TypeTable` is assigned to the instance variable `typeTable`. After this, the shared variable is never accessed directly in the `Scanner` class. All other methods use the `typeTable` instance variable. This allows us to test the `Scanner` class independently of a type table by using a setter `typeTable:` to substitute the real table (stored in a shred variable) with a fake object (e.g., a mock table).
 
 ## References
 
+* Stéphane's slides
 * [Pharo by Example](https://books.pharo.org/updated-pharo-by-example/pdf/2018-09-29-UpdatedPharoByExample.pdf). Chapter 6.9. Shared Variables
