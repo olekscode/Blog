@@ -48,9 +48,12 @@ For example, here is a definition of class color with 4 instance variables (slot
 
 ```Smalltalk
 Object << #Color
-    slots: { #rgb . #cachedDepth . #cachedBitPattern . #alpha };    sharedVariables: { #RedShift . #CachedColormaps . #IndexedColors .
+    slots: { #rgb . #cachedDepth . #cachedBitPattern . #alpha };
+    sharedVariables: { #RedShift . #CachedColormaps . #IndexedColors .
         #ComponentMax . #ComponentMask . #ColorRegistry . #GreenShift .
-        #BlueShift . #GrayToIndexMap . #HalfComponentMask . #MaskingMap };    tag: 'Base';    package: 'Colors'
+        #BlueShift . #GrayToIndexMap . #HalfComponentMask . #MaskingMap };
+    tag: 'Base';
+    package: 'Colors'
 ```
 
 Shared variables can be initialized in the class side `initialize` method.
