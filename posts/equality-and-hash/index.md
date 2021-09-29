@@ -1,7 +1,10 @@
 Consider the following situation. I define a class `Person` with two instance variables: `name` and `age`.
 
 ```Smalltalk
-Object subclass: #Person   instanceVariableNames: 'name age'   classVariableNames: ''   package: 'EqualityAndHash'
+Object subclass: #Person
+   instanceVariableNames: 'name age'
+   classVariableNames: ''
+   package: 'EqualityAndHash'
 ```
 
 I also provide a _"getter"_ and _"setter"_ accessors for both variables:
@@ -23,7 +26,12 @@ Person >> age: anObject
 For convenience, I define the `printOn:` method to print the Person object as a string in `Name(age)` format:
 
 ```Smalltalk
-Person >> printOn: aStream   aStream      nextPutAll: name;      nextPut: $(;      nextPutAll: age asString;      nextPut: $).
+Person >> printOn: aStream
+   aStream
+      nextPutAll: name;
+      nextPut: $(;
+      nextPutAll: age asString;
+      nextPut: $).
 ```
 
 Then I create four instances of `Person`:
