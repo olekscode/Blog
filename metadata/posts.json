@@ -124,5 +124,12 @@
     "categories": ["Design Coffee Club", "Software Design", "Software Architecture", "Pharo", "Programming", "OOP"],
     "datePublished": "September 27, 2021",
     "draft": false
+  },
+  {
+    "id": "pi-monte-carlo",
+    "title": "Estimating Pi Using the MonteCarlo Method",
+    "categories": ["Programming", "Probability", "Statistics", "Numerical Methods"],
+    "datePublished": "October 1, 2021",
+    "draft": true
   }
 ]
