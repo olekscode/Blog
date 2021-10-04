@@ -131,5 +131,12 @@
     "categories": ["Programming", "Probability", "Statistics", "Numerical Methods"],
     "datePublished": "October 1, 2021",
     "draft": true
+  },
+  {
+    "id": "double-dispatch",
+    "title": "Design Coffee Club: Double Dispatch",
+    "categories": ["Design Coffee Club", "Software Design", "Software Architecture", "Python", "Programming", "OOP"],
+    "datePublished": "October 5, 2021",
+    "draft": true
   }
 ]
