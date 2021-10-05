@@ -50,26 +50,60 @@ def play_rock_paper_scissors(first_hand, second_hand):
 ![](figures/RockPaperScissorsLizardSpock.svg)
 
 ```Python
-def play_rock_paper_scissors(first_hand, second_hand):
+def play_rock_paper_scissors_lizard_spock(first_hand, second_hand):
     if (first_hand == 'Rock'):
         if (second_hand == 'Rock'):
             return 'Draw'
         elif (second_hand == 'Paper'):
             return 'Paper'
-        else:
+        elif (second_hand == 'Scissors'):
             return 'Rock'
+        elif (second_hand == 'Lizard'):
+            return 'Rock'
+        else:
+            return 'Spock'
     elif (first_hand == 'Paper'):
         if (second_hand == 'Rock'):
             return 'Paper'
         elif (second_hand == 'Paper'):
             return 'Draw'
-        else:
+        elif (second_hand == 'Scissors'):
             return 'Scissors'
-    else:
+        elif (second_hand == 'Lizard'):
+            return 'Lizard'
+        else:
+            return 'Paper'
+    elif (first_hand == 'Scissors'):
         if (second_hand == 'Rock'):
             return 'Rock'
         elif (second_hand == 'Paper'):
             return 'Scissors'
+        elif (second_hand == 'Scissors'):
+            return 'Draw'
+        elif (second_hand == 'Lizard'):
+            return 'Scissors'
+        else:
+            return 'Spock'
+    elif (first_hand == 'Lizard'):
+        if (second_hand == 'Rock'):
+            return 'Rock'
+        elif (second_hand == 'Paper'):
+            return 'Lizard'
+        elif (second_hand == 'Scissors'):
+            return 'Scissors'
+        elif (second_hand == 'Lizard'):
+            return 'Draw'
+        else:
+            return 'Lizard'
+    else:
+        if (second_hand == 'Rock'):
+            return 'Spock'
+        elif (second_hand == 'Paper'):
+            return 'Paper'
+        elif (second_hand == 'Scissors'):
+            return 'Spock'
+        elif (second_hand == 'Lizard'):
+            return 'Lizard'
         else:
             return 'Draw'
 
