@@ -4,32 +4,95 @@ Today at our weekly Desigm Coffee Club meeting at [RMoD](https://rmod.inria.fr),
 
 ## Rock-Paper-Scissors Game
 
+Consider an example of implementing a simple rock-paper-scissors game. For those of you who tend to forget the rules (like I do) here they are:
+
+- Scissors cuts Paper
+- Paper covers Rock
+- Rock crushes Scissors
+
 ![](figures/RockPaperScissorsDrawing.png)
+
+Let's implement this game in Python in a simple and naïve way. The game can be implemented as a function `play_rock_paper_scissors()` that takes two arguments. Each argument is a string with three possible values: `'Rock'`, `'Paper'`, or `'Scissors'`. The output of the function is also a string with four possible values `'Rock'`, `'Paper'`, `'Scissors'`, or `'Draw'`.
 
 ```Python
 def play_rock_paper_scissors(first_hand, second_hand):
+    if (first_hand == second_hand):
+        return 'Draw'
+
     if (first_hand == 'Rock'):
-        if (second_hand == 'Rock'):
-            return 'Draw'
-        elif (second_hand == 'Paper'):
+        if (second_hand == 'Paper'):
             return 'Paper'
         else:
             return 'Rock'
     elif (first_hand == 'Paper'):
         if (second_hand == 'Rock'):
             return 'Paper'
-        elif (second_hand == 'Paper'):
-            return 'Draw'
         else:
             return 'Scissors'
     else:
         if (second_hand == 'Rock'):
             return 'Rock'
-        elif (second_hand == 'Paper'):
-            return 'Scissors'
         else:
-            return 'Draw'
+            return 'Scissors'
 
+```
+
+Let's write a unit test to validate the correctness of this function.
+
+```Python
+import unittest
+from rps_naive import play_rock_paper_scissors
+
+class TestRockPaperScissors(unittest.TestCase):
+    def test_rock_against_rock(self):
+        self.assertEqual(play_rock_paper_scissors('Rock', 'Rock'), 'Draw')
+        
+    def test_rock_against_paper(self):
+        self.assertEqual(play_rock_paper_scissors('Rock', 'Paper'), 'Paper')
+        
+    def test_rock_against_scissors(self):
+        self.assertEqual(play_rock_paper_scissors('Rock', 'Scissors'), 'Rock')
+        
+    def test_paper_against_rock(self):
+        self.assertEqual(play_rock_paper_scissors('Paper', 'Rock'), 'Paper')
+        
+    def test_paper_against_paper(self):
+        self.assertEqual(play_rock_paper_scissors('Paper', 'Paper'), 'Draw')
+        
+    def test_paper_against_scissors(self):
+        self.assertEqual(play_rock_paper_scissors('Paper', 'Scissors'), 'Scissors')
+        
+    def test_scissors_against_rock(self):
+        self.assertEqual(play_rock_paper_scissors('Scissors', 'Rock'), 'Rock')
+        
+    def test_scissors_against_paper(self):
+        self.assertEqual(play_rock_paper_scissors('Scissors', 'Paper'), 'Scissors')
+        
+    def test_scissors_against_scissors(self):
+        self.assertEqual(play_rock_paper_scissors('Scissors', 'Scissors'), 'Draw')
+        
+if __name__ == '__main__':
+    unittest.main()
+```
+
+As you can see below, all tests are passing.
+
+```
+Mac:src oleks$ python -m unittest test_naive.py -v
+test_paper_against_paper (test_naive.TestRockPaperScissors) ... ok
+test_paper_against_rock (test_naive.TestRockPaperScissors) ... ok
+test_paper_against_scissors (test_naive.TestRockPaperScissors) ... ok
+test_rock_against_paper (test_naive.TestRockPaperScissors) ... ok
+test_rock_against_rock (test_naive.TestRockPaperScissors) ... ok
+test_rock_against_scissors (test_naive.TestRockPaperScissors) ... ok
+test_scissors_against_paper (test_naive.TestRockPaperScissors) ... ok
+test_scissors_against_rock (test_naive.TestRockPaperScissors) ... ok
+test_scissors_against_scissors (test_naive.TestRockPaperScissors) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.000s
+
+OK
 ```
 
 ## Problem: Adding Lizard and Spock
