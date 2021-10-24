@@ -114,7 +114,7 @@ The problem with our implementation is that it can not be easily extended withou
 
 ![](figures/RockPaperScissorsLizardSpock.svg)
 
-This simple change has exponentially increased the number of combinations. But more importantly, to introduce it, we would have to modify the same function that was already implemented and tested. Our initial design violates the open-closed principle: _"software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"_.
+This simple change has exponentially increased the number of combinations. But more importantly, to introduce it, we would have to modify the same function that was already implemented and tested. This means that our design violates the open-closed principle: _"software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"_.
 
 ```Python
 def play_rock_paper_scissors_lizard_spock(first_hand, second_hand):
