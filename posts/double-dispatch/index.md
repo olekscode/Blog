@@ -2,9 +2,11 @@
 
 Today at our weekly Desigm Coffee Club meeting at [RMoD](https://rmod.inria.fr), we discussed double dispatch - a process to choose which method to invoke depending on the receiver and the argument type.
 
+To illustrate this process, we will implement a simple Rock-Paper-Scissors game. Then we will try to extend a game with new figures such as Lizard and Spock.
+
 ## Rock-Paper-Scissors Game
 
-Consider an example of implementing a simple rock-paper-scissors game. For those of you who tend to forget the rules (like I do) here they are:
+This simple game that is familiar to nearly every child in the world originated in ancient China and Japan around 200 BC. In the early version of the game, the thumb represented the _"Frog"_, little finger was the _"Slug"_, and the index finger - the _"Snake"_ (see [The Official History of Rock Paper Scissors](https://wrpsa.com/the-official-history-of-rock-paper-scissors/) and [Rock, Paper, Scissors Goes Back To Ancient China](https://historydaily.org/rock-paper-scissors-ancient-china)). The modern westernized version of the game that is known globally uses Rock, Paper, and Scissors. And the rules are the following:
 
 - Scissors cuts Paper
 - Paper covers Rock
@@ -12,7 +14,7 @@ Consider an example of implementing a simple rock-paper-scissors game. For those
 
 ![](figures/RockPaperScissorsDrawing.png)
 
-Let's implement this game in Python in a simple and naïve way. The game can be implemented as a function `play_rock_paper_scissors()` that takes two arguments. Each argument is a string with three possible values: `'Rock'`, `'Paper'`, or `'Scissors'`. The output of the function is also a string with four possible values `'Rock'`, `'Paper'`, `'Scissors'`, or `'Draw'`.
+Let's implement this game in Python in a simple and naïve way. We can write a small function `play_rock_paper_scissors()` that takes two arguments. Each argument is a string with three possible values: `'Rock'`, `'Paper'`, or `'Scissors'`. The output of the function is also a string with four possible values `'Rock'`, `'Paper'`, `'Scissors'`, or `'Draw'`.
 
 ```Python
 def play_rock_paper_scissors(first_hand, second_hand):
@@ -97,7 +99,7 @@ OK
 
 ## Problem: Adding Lizard and Spock
 
-[The Big Bang Theory, Season 2 Ep. 5, "The Lizard-Spock Expansion"](https://youtu.be/Kov2G0GouBw)
+The problem with our implementation is that it can not be easily extended without modifying the existing code. In [The Big Bang Theory, Season 2 Ep. 5, "The Lizard-Spock Expansion"](https://youtu.be/Kov2G0GouBw), Sheldon Cooper introduced his friends to an extended version of the game. It included two additional figures: Lizard and Spock:
 
 - Scissors cuts Paper
 - Paper covers Rock
@@ -111,6 +113,8 @@ OK
 - (and as it always has) Rock crushes Scissors
 
 ![](figures/RockPaperScissorsLizardSpock.svg)
+
+This simple change has exponentially increased the number of combinations. But more importantly, to introduce it, we would have to modify the same function that was already implemented and tested. Our initial design violates the open-closed principle: _"software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification"_.
 
 ```Python
 def play_rock_paper_scissors_lizard_spock(first_hand, second_hand):
@@ -174,6 +178,30 @@ def play_rock_paper_scissors_lizard_spock(first_hand, second_hand):
 
 ## Better Implementation Using Double Dispatch
 
+The more agile way to implement the Rock-Paper-Scissors game involves double dispatch. We implement each figure as a class and add a method `self.play_against(other)` to each class. We do not know the type of the `other` but we know the type of `self`. So in each implementation of `play_against()` we delegate the responsibility to another object, "telling" it against whom it is playing:
+
+```Python
+class Rock:
+    def play_against(self, other):
+        return other.play_against_rock(self)
+        
+class Paper:
+    def play_against(self, other):
+        return other.play_against_paper(self)
+        
+class Rock:
+    def play_against(self, other):
+        return other.play_against_scissors(self)  
+```
+
+This delegation is called "double dispatch" because the method is dispatched twice: first to `self` and then to `other`.
+
+Here is the full implementation of the game.
+
+![](figures/RockPaperScissors.png)
+
+We provide a common superclass `Hand` to represent all figures.
+
 ```Python
 class Hand:
     def is_rock(self):
@@ -188,6 +216,9 @@ class Hand:
     def is_draw(self):
         return False
 ```
+
+For simplicity, we implement `Draw` as a class.
+
 ```Python   
 class Draw(Hand):
     def is_draw(self):
@@ -245,6 +276,6 @@ class Scissors(Hand):
         return Draw()
 ```
 
-![](figures/RockPaperScissors.png)
+To add Lizard and Spock to this game, we only need to implement them as classes and add two new methods to eavery existing class: `play_against_lizard()` and `play_against_spock()`. This might seem a bit verbose. After all, we had to write more code than in the first example. But key benefit is that now we can extend the game without modifying any of the existing methods. 
 
 ![](figures/RockPaperScissorsLizardSpock.png)
