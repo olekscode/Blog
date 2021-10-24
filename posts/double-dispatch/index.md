@@ -278,6 +278,6 @@ class Scissors(Hand):
         return Draw()
 ```
 
-To add Lizard and Spock to this game, we only need to implement them as classes and add two new methods to eavery existing class: `play_against_lizard()` and `play_against_spock()`. This might seem a bit verbose. After all, we had to write more code than in the first example. But key benefit is that now we can extend the game without modifying any of the existing methods. 
+To add Lizard and Spock to this game, we only need to implement them as classes and add two new methods to every existing class: `play_against_lizard()` and `play_against_spock()`. This might seem a bit verbose. After all, we had to write more code than in the first example. But the key benefit is that now we can extend the game without modifying any of the existing methods. 
 
 ![](figures/RockPaperScissorsLizardSpock.png)
