@@ -198,39 +198,12 @@ class Rock:
 
 This delegation is called "double dispatch" because the method is dispatched twice: first to `self` and then to `other`.
 
-Here is the full implementation of the game.
+Below is the full implementation of the game. We provide a common superclass `Hand` to represent all figures. For simplicity, we also implement `Draw` as a class.
 
 ![](figures/RockPaperScissors.png)
 
-We provide a common superclass `Hand` to represent all figures.
-
-```Python
-class Hand:
-    def is_rock(self):
-        return False
-        
-    def is_paper(self):
-        return False
-        
-    def is_scissors(self):
-        return False
-        
-    def is_draw(self):
-        return False
-```
-
-For simplicity, we implement `Draw` as a class.
-
-```Python   
-class Draw(Hand):
-    def is_draw(self):
-        return True
-```
 ```Python
 class Rock(Hand):
-    def is_rock(self):
-        return True
-                
     def play_against(self, other):
         return other.play_against_rock(self)
     
@@ -244,10 +217,7 @@ class Rock(Hand):
         return self
 ```
 ```Python
-class Paper(Hand):
-    def is_paper(self):
-        return True
-                
+class Paper(Hand):      
     def play_against(self, other):
         return other.play_against_paper(self)
     
@@ -261,10 +231,7 @@ class Paper(Hand):
         return other
 ```
 ```Python
-class Scissors(Hand):
-    def is_scissors(self):
-        return True
-                
+class Scissors(Hand):     
     def play_against(self, other):
         return other.play_against_scissors(self)
     
