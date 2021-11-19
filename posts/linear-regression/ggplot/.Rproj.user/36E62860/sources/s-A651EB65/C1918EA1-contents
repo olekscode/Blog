@@ -9,11 +9,19 @@ library(scales)
 
 line_color <- blue
 
+n <- 50
+areas <- runif(n) * 40 + 10
+prices <- areas * 10 + 200 + rnorm(length(areas)) * 50
+
+data <- data.frame(
+  area = areas,
+  price = prices)
+
 line_func <- function(slope, intercept)
   function(area)
     slope * area + intercept
 
-error_lines <- function(data, pred_func)
+error_lines <- function(pred_func)
   geom_segment(aes(
     x=area,
     xend=area,
@@ -32,7 +40,7 @@ error_squares <- function(data, pred_func) {
     ymin <- min(true_price, pred_price)
     ymax <- max(true_price, pred_price)
     xmin <- area
-    xmax <- area + ((ymax - ymin) / 10)
+    xmax <- area + (ymax - ymin) / (max(data$price) - min(data$price)) * (max(data$area) - min(data$area))
     
     square <- ggplot2::annotate(
       "rect",
@@ -48,12 +56,13 @@ error_squares <- function(data, pred_func) {
   return(squares);
 }
 
-draw_regression <- function(slope, intercept, title)
+draw_regression <- function(data, slope, intercept, title)
   ggplot(data, aes(x=area, y=price)) +
+    #error_squares(data, line_func(slope, intercept)) +
+    error_lines(line_func(slope, intercept)) +
     geom_abline(intercept=intercept, slope=slope, color=line_color, lwd=.8) +
-    error_squares(data, line_func(slope, intercept)) +
-    error_lines(data, line_func(slope, intercept)) +
     geom_point() +
+    coord_cartesian(xlim=range(data$area)) +
     ggtitle(title) +
     labs(x="Area (sq. m)", y="Price (euros)") +
     theme_Publication() +
@@ -62,19 +71,11 @@ draw_regression <- function(slope, intercept, title)
       panel.grid.major=element_blank(),
       text=element_text(family="Avenir"))
 
-n <- 10
-areas <- runif(n) * 40 + 10
-prices <- areas * 10 + 200 + rnorm(length(areas)) * 70
-
-data <- data.frame(
-  area = areas,
-  price = prices)
-
 model <- lm(price ~ area, data)
 
-p1 <- draw_regression(-5, 700, "Bad Line")
-p2 <- draw_regression(5, 350, "Better Line")
-p3 <- draw_regression(model$coefficients[2], model$coefficients[1], "Best Line")
+p1 <- draw_regression(data, -5, 700, "Bad Line")
+p2 <- draw_regression(data, 4, 320, "Better Line")
+p3 <- draw_regression(data, model$coefficients[2], model$coefficients[1], "Best Line")
 
 result <- grid.arrange(arrangeGrob(p1, p2, p3, ncol=3))
 
