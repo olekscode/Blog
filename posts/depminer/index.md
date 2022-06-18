@@ -24,7 +24,7 @@ In the picture below, you can see a simple visualization of the process that we 
 Here, Bob is the _client developer_ and his application is the _client system_.
 The client system is updated to the new version in response to the evolution of library that is maintained by the _library developers_.
 
-![](figures/LibraryUpdate.pdf)
+![](figures/LibraryUpdate.png)
 
 ## Library Developer Perspective
 
@@ -42,7 +42,7 @@ And this way, library developers can help their clients to update.
 
 ## Deprewriter: Rewriting Deprecations in Pharo
 
-![](figures/DeprewriterProcess.pdf)
+![](figures/DeprewriterProcess.png)
 
 ## Why Do We Still Need to Support Library Developers?
 
@@ -50,7 +50,7 @@ And this way, library developers can help their clients to update.
 
 ## Depminer: Outine of Our Approach
 
-![](figures/Approach.pdf)
+![](figures/Approach.png)
 
 ![](figures/depminer.png)
 
