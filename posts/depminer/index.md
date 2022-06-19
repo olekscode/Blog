@@ -79,14 +79,94 @@ When client system makes a call to the deprecated method, Deprewriter will find 
 
 ## Why Do We Still Need to Support Library Developers?
 
+Despite having good tools for method deprecation, library developers often miss the deprecation opportunity (they remove methods without deprecating them first thus breaking the API) or miss the chance to introduce a transformation rule when it is straightforward.
+Sometimes they do it on purpose, for example if they think that deprecations will increase the complexity of maintaining the system.
+
+But in many cases, it happens because library developers can not keep track of all the changes that happen in the library (especially in large open-source projects).
+Methods get removed, renamed, split, etc., without anyone noticing that this may break clients.
+Also, there are cases when library developers do not know what is the good replacement for the removed method.
+
+Empirical studies show that about 33% of deprecations in Java and JavaScript, as well as 22% of deprecations in C#, do not have any helpful replacement message that would suggest clients how to replace the obsolete method.
+We have also analysed method deprecations in Pharo 8 and show that 41% of them are non-rewriting (do not contain a transformation rule).
+What's interesting is that about 22% of those non-rewriting deprecations could be easily (and sometimes automatically) supplied with a transformation rule.
+This indicates that either library developers did not know how to write transformation rules, or they did not know why the method was removed and what is the replacement for it (i.e., if developer A renamed a method and 100 days later developer B noticed that it breaks some clients and decided to re-introduce the old method with deprecation).
+
+In both cases, library developers could benefit from the automated tools that would analyse the source code of the library before the release to identify breaking changes (i.e. missing public methods) and mine the commit history to explain them and find replacements.
+
+
 ## General Idea: Mining Frequent Method Call Replacements
 
-## Depminer: Outine of Our Approach
+Our approach is based on the data mining technique called the _market basket analysis_.
+It helps uncover associations between products that are commonly purchased together.
+For example, the algorithm of market basket analysis, such as A-Priori, Eclat, or FP-Growth, can tell us that _bread_ and _butter_ are often purchased together.
+Or that the customers who buy cereals are also likely to buy milk.
+
+To answer those questions, we start by collecting a dataset of transactions.
+For example, a set of products that were purchased by each customer:
+
+```
+Customer 1: { bread, butter, bananas }
+Customer 2: { bread, butter, avocado }
+Customer 3: { bread, butter, milk, cereal }
+Customer 4: { bread, milk, cereal }
+Customer 5: { butter, milk, cereal }
+```
+(real datasets may contain billions of transactions)
+
+Then we use an efficient way of enumerating and counting the subsets of items to find which pairs of products were bought together by at least 60% of customers (this is called the _support threshold_).
+The algorithm will find two pairs of items that sattisfy the support threshold: `{ bread, butter }` and `{ milk, cereal }`.
+Indeed, in our dataset, those pairs of items are purchased together by 3 out of 5 customers.
+Those subsets of items are called the _frequent itemsets_.
+
+Next, we can try to answer what are the products that the customers often buy together with bread.
+We can see that there are 4 customers who bought bread and 3 of them (75%) have also bought butter.
+This means that we can recommend butter to all customers who buy bread and expect that this recommendation will be relevant for them in 75% of cases.
+In this case, `{ bread } -> { butter }` is called an association rule.
+Given the confidence threshold, the data mining algorithm can retrive those kind of rules from the data.
+
+We can apply a similar technique to the commit history.
+To do that, we build a transaction dataset, where each transaction is a method change (one method modified by one commit), represented as a set of added and removed method calls.
+For example, here is a method change - method `insert()` modified by a commit:
+
+![](figures/MethodChange.png)
+
+We can represent this method change as a set of added and removed method calls:
+
+```
+{
+  remove(setNext),
+  add(setNextNode),
+  remove(next),
+  remove(next),
+  add(nextNode),
+  add(nextNode)
+}
+```
+
+This way, after building a dataset of transactions from the commit history, we can use it tmine frequent subsets of method call additions removals such as `{ remove(next), add(nextNode) }` and use them to infer the association rules which we call _frequent method call replacements_: `{ next } -> { nextNode }`.
+
+Our logic is the following: when method `next` in the library was renamed to `nextNode`, every reference to that method had to be updated.
+Therefore, in the commit history there should be a pattern that method call to `next` was often removed and at the same time the method call to `nextNode` was added.
+
+After collecting the list of association rules (frequent method call replacements), it is straightforward to generate deprecations. For example:
+
+```Smalltalk
+next
+  self
+    deprecated: 'Use nextNode instead'
+    transformWith: '`@rec next' -> '`@rec nextNode'.
+   
+  ^ self nextNode.
+```
+
+Now we can report to library developer that public method `next` is missing, which is a breaking change that may affect clients, and recommend to reintroduce this method with the rewriting deprecation.
+
+The step-by-step outline of our approach can be seen in the picture below. 
 
 ![](figures/Approach.png)
 
-![](figures/depminer.png)
-
 ## Evaluation
+
+![](figures/depminer.png)
 
 ## Conclusion
