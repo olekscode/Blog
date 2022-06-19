@@ -31,21 +31,24 @@ The client system is updated to the new version in response to the evolution of 
 Multiple approaches have been proposed to help client developers deal with library update.
 Most of those approaches are based on mining the commit history or analysing the source code in order to extract the knowledge about the system and then present it to the client in the form of recommendations or automatable rules.
 
-![]()
+![](figures/ToolsForClientDevelopers.png)
 
 We propose to switch the perspective and to propose recommendations to library developers, who already possess some knowledge about the system but might need help understanding different parts of it, remembering the changes that were made long time ago, or understanding the changes that were made by others.
 Library developers are motivated to support their clients because they want them to update their applications to the latest versions.
 So, in our model, we mine the commit hitory to help library developers to prepare a better release (i.e. with less breaking changes and better documented).
 And this way, library developers can help their clients to update.
 
-![]()
+![](figures/ToolsForLibraryDevelopers.png)
 
-In a different study, we have identified four main ways how library developers can support their clients:
+There are four main ways how library developers can support their clients:
 
-1. **Documentation** (release notes, change logs, tutorials, etc.).
-2. **Deprecation**
-3. **Automation** (update script, transformation rules, etc.).
-4. **Communication** (chats, forums, mailing lists, etc.).
+1. **Documentation** -- release notes, change logs, tutorials, etc.
+2. **Deprecation** -- labeling functionality as "deprecated" instead of removing it right away.
+3. **Automation** -- update script, transformation rules, etc.
+4. **Communication** -- chats, forums, mailing lists, etc.
+
+In this work, we focus on two of those strategies - deprecation and automation.
+We propose an approach to mine the commit history of a library and generate method deperecations with transformation rules that can be used to automatically fix client code.
 
 ## Deprewriter: Rewriting Deprecations in Pharo
 
