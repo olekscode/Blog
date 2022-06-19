@@ -167,6 +167,24 @@ The step-by-step outline of our approach can be seen in the picture below.
 
 ## Evaluation
 
+To evaluate our approach, we implemented it in a prototype tool for Pharo.
+Our tool presented library developers with the list of public methods in both the old and the new version of their project, as well as the list of breaking changes.
+Where possible, the breaking change was accompanied with recommendation that suggested a replacement and a generated transformation rule.
+Developers could see which commits in the history contributed to this recommendation.
+After that, they could accept or reject the deprecation.
+Here is the screenshot of this prototype tool.
+
 ![](figures/depminer.png)
 
+We applied our tool to 5 open-source projects of different size and type: tools, libraries and SDKs.
+134 of the generated deprecations were accepted into the projects as pull requests.
+
+(for more information about the evaluation, please see the paper).
+
 ## Conclusion
+
+- In our paper, we proposed an approach to help library developers improve their releases by generating deprecations with transformation rules.
+- Those deprecations can be used to rewrite client code.
+- Our approach is based on frequent method call replacement from the commit history.
+- We implemented our approach as a prototype tool for Pharo and evaluated it on 5 open-source projects.
+- 134 of the generated deprecations were accepted into the projects as pull requests.
