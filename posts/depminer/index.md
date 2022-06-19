@@ -40,6 +40,13 @@ And this way, library developers can help their clients to update.
 
 ![]()
 
+In a different study, we have identified four main ways how library developers can support their clients:
+
+1. **Documentation** (release notes, change logs, tutorials, etc.).
+2. **Deprecation**
+3. **Automation** (update script, transformation rules, etc.).
+4. **Communication** (chats, forums, mailing lists, etc.).
+
 ## Deprewriter: Rewriting Deprecations in Pharo
 
 ![](figures/DeprewriterProcess.png)
