@@ -52,6 +52,29 @@ We propose an approach to mine the commit history of a library and generate meth
 
 ## Deprewriter: Rewriting Deprecations in Pharo
 
+In Pharo, there is a powerful technique of rewriting deprecations called _Deprewriter_.
+It allows library developers to deprecate methods with transformation rules that will be used to automatically rewrite the call-site in the client code whenever the deprecated method is being called.
+In this section, I will briefly explain this technique.
+For more detailed explanation, please read my [blog post about Deprewriter](https://www.arolla.fr/blog/2021/09/deprewriter-depreciations-intelligentes-pour-la-correction-automatique-de-code-client/) or our paper [Deprewriter: On the fly rewriting method deprecations](https://hal.inria.fr/hal-03563605) that was published in the Journal of Object Technologies.
+
+Below, you can see an example of how a method `Collection.includesAllOf()` can be deprecated with a transformation that replaces it with `newMethod`.
+
+```Smalltalk
+Collection >> includesAllOf: values
+  self
+    deprecated: ‘Use includesAll: instead’
+    transformWith: ‘`@rec includesAllOf: `@arg’ -> ‘`@rec includesAll: `@arg’.
+
+  ^ self includesAll: values
+```
+
+To deprecate a method in Pharo, we call a method `deprecated:transformWith:` with two arguments:
+
+1. A string that will be displayed to the client in a deprecation warning. In this case, `‘Use includesAll: instead’` - a message informing clients what is the good replacement for the deprecated method (as we will see later, many deprecations do not have any helpful message).
+2. A transformation rule in the form `antecedent -> consequent`. Where _antecedent_ is a left-hand side expression, matching the method call the should be rewritten (in our example, it's `'@rec includesAllOf: '@arg`), and _consequent_ is the right-hand side expression defining the replacement (in our example, it's `'@rec includesAll: '@arg`).
+
+When client system makes a call to the deprecated method, Deprewriter will find that specific call site, use the transformation rule to rewrite it, and then continue the execution as if nothing happened. You can see the illustration of this process in the picture below.
+
 ![](figures/DeprewriterProcess.png)
 
 ## Why Do We Still Need to Support Library Developers?
