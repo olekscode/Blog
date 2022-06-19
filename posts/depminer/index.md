@@ -1,4 +1,4 @@
-# Mining Transformation Rules from the Commit History
+# DepMiner: Mining Transformation Rules from the Commit History
 
 In this blog post, I present the vulgarization of our paper [DepMiner: Automatic Recommendation of Transformation Rules for Method Deprecation](https://link.springer.com/chapter/10.1007/978-3-031-08129-3_2).
 It was published this year at the [International Conference on Software Reuse](http://www.wikicfp.com/cfp/program?id=1481) (ICSR'22).
