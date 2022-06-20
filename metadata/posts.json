@@ -144,6 +144,13 @@
     "title": "DepMiner: Mining Transformation Rules from the Commit History",
     "categories": ["Software Evolution", "Software Reuse", "Library Update", "Data Mining", "Pharo", "Programming"],
     "datePublished": "June 19, 2022",
-    "draft": true
+    "draft": false
+  },
+  {
+    "id": "depminer-fr",
+    "title": "DepMiner : Extraction de règles de transformation à partir de l’historique des validations",
+    "categories": ["Software Evolution", "Software Reuse", "Library Update", "Data Mining", "Pharo", "Programming"],
+    "datePublished": "June 19, 2022",
+    "draft": false
   }
 ]
