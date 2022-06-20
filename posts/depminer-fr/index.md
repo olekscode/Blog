@@ -127,7 +127,7 @@ Le schéma étape par étape de notre approche peut être vu dans l'image ci-des
 
 Pour évaluer notre approche, nous l'avons implémentée dans un outil prototype pour Pharo. Notre outil présentait aux développeurs de bibliothèques la liste des méthodes publiques dans l'ancienne et la nouvelle version de leur projet, ainsi que la liste des changements de rupture. Lorsque cela était possible, le changement de rupture était accompagné d'une recommandation suggérant un remplacement et d'une règle de transformation générée. Les développeurs pouvaient voir quels commits dans l'historique avaient contribué à cette recommandation. Ensuite, ils pouvaient accepter ou rejeter la dépréciation. Voici la capture d'écran de ce prototype d'outil.
 
-![](figures/Depminer.png)
+![](figures/depminer.png)
 
 Nous avons appliqué notre outil à 5 projets open-source de taille et de type différents : outils, bibliothèques et SDK. 134 des dépréciations générées ont été acceptées dans les projets en tant que pull requests.
 
