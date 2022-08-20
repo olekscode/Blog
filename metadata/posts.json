@@ -152,5 +152,12 @@
     "categories": ["Software Evolution", "Software Reuse", "Library Update", "Data Mining", "Pharo", "Programming"],
     "datePublished": "June 19, 2022",
     "draft": false
+  },
+  {
+    "id": "tdd",
+    "title": "A Guided Example of Test-Driven Development",
+    "categories": ["Software Development", "Test-Driven Development", "Programming", "Pharo"],
+    "datePublished": "August 20, 2022",
+    "draft": true
   }
 ]

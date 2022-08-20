@@ -1,4 +1,18 @@
-# Harry Potter Kata
+# A Guided Example of Test-Driven Development
+
+In this post, I will explain the principles of Test-Driven Development and demonstrate their application through a simple guided example.
+This technique is important for implementing software in a step-by-step manner.
+It can be used to contribute to large complex projects and to build small simple projects.
+
+## The Principles of TDD
+
+![](figures/tdd-lifecycle.png)
+
+1. Add a test
+2. Run all tests. The new test should fail for expected reasons
+3. Write the simplest code that passes the new test
+4. All tests should now pass
+5. Refactor as needed, using tests after each refactor to ensure that functionality is preserved
 
 ## Step 1. Implementing the HPBook class
 
