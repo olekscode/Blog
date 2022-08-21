@@ -1,18 +1,46 @@
 # A Guided Example of Test-Driven Development
 
-In this post, I will explain the principles of Test-Driven Development and demonstrate their application through a simple guided example.
-This technique is important for implementing software in a step-by-step manner.
-It can be used to contribute to large complex projects and to build small simple projects.
+Although learning to code is relatively simple, many beginner programmers find it hard to develop complex projects –– the more code they write, the less confident they feel about it.
+System grows, becomes more complex and harder to understand.
+Bugs become more frequent and even small changes become painful and time consuming.
+ 
+It is even harder to contribute to large existing systems that were built and maintained by other people.
+Having a very limited knowledge of a large software system, how can we introduce changes and be sure that they do not break the existing functionality?
 
-## The Principles of TDD
+In this post, I will introduce the software development practice that allows to overcome all those challenges and build software in a confident step-by-step manner.
+This practice is known as _Test-Driven Development_ (TDD).
+Instead of developing software first and testing it later, the TDD practitioners start by writing a test for the feature that does not exist yet.
+Naturally, this results in a failing test, which proves that the test is capable of capturing the absence of the feature.
+Then developers write _as little as possible_ code to make the test pass.
+The practice of test-driven development brings many benefits to its practitioners:
+
+- it increases the productivity of programming;
+- improves the quality of code and leads to the better design of a system;
+- it offers constant validation of correctness;
+- it encourages us to make small incremental changes and commit often, which leads to more modularized, flexible, and extensible code;
+- and **most importantly**, it allows us to develop software with more confidence.
+
+In the following sections of this post, I will briefly explain the TDD workflow, then I will guide you through an example, in which we will use TDD to implement a system that sells Harry Potter books. The goal of this exercise is getting used to the TDD workflow and understanding its benefits.
+
+## The TDD Workflow
+
+In the picture below, you can see the visualization of the test-driven development workflow. It consists of two parts that are peformed iteratively:
+
+- **Code-driven testing** –– add a new feature to the code by writing a failing test and then making it pass; ideally, every new feature should only be added to the system (or part of it) that is fully tested.
+- **Refactoring** –– improve the quality of code without changing its functionality; this is ensured by constantly running the tests and making sure that they succeed.
 
 ![](figures/tdd-lifecycle.png)
+
+The whole workflow consists of five steps (the numbers are the same as in the picture above):
 
 1. Add a test
 2. Run all tests. The new test should fail for expected reasons
 3. Write the simplest code that passes the new test
 4. All tests should now pass
 5. Refactor as needed, using tests after each refactor to ensure that functionality is preserved
+
+**Important.** In practice, it is always tempting to implement 
+The tests must be written before the functionality that is being testsed.
 
 ## Step 1. Implementing the HPBook class
 
