@@ -166,5 +166,12 @@
     "categories": ["Pharo", "Pillar", "Microdown", "Markup", "Tutorial"],
     "datePublished": "November 29, 2022",
     "draft": false
+  },
+  {
+    "id": "baseline-packages",
+    "title": "Accessing Project Packages Through Baseline",
+    "categories": ["Pharo", "Baseline", "Git"],
+    "datePublished": "August 16, 2025",
+    "draft": false
   }
 ]
